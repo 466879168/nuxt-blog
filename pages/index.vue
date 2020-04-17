@@ -6,10 +6,14 @@
         nuxt-blog
       </h1>
       <h2 class="subtitle">
-        nuxt-blog
+        My prime Nuxt.js project
       </h2>
       <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
+        <a
+          href="https://nuxtjs.org/"
+          target="_blank"
+          class="button--green"
+        >
           Documentation
         </a>
         <a

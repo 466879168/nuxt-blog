@@ -1,6 +1,6 @@
 # nuxt-blog
 
-> nuxt-blog
+> My prime Nuxt.js project
 
 ## Build Setup
 
