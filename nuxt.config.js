@@ -59,5 +59,22 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  proxy: {
+    '/api': {
+      target: 'http://106.54.232.85',
+      // target: 'http://localhost:8888',
+      pathRewrite: {
+        '^/api': '/'
+      }
+    },
+    '/wp-content': {
+      target: 'http://106.54.232.85'
+      // target: 'http://106.54.232.85/'
+    }
+  },
+
+  env: {
+    baseUrl: '/api'
   }
 }
