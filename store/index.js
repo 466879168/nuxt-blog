@@ -29,7 +29,7 @@ export const mutations={
 
 export const actions={
   //获取公共信息
-  async serverInit({commit}){
+  async getGlobalInfo({commit}){
     try {
       let {data:globalInfo}=await this.$axios.$get(`${process.env.baseUrl}/wp-json/dylan-blog/v1/info`)
       let {data:menu}=await this.$axios.$get(`${process.env.baseUrl}/wp-json/dylan-blog/v1/menu`)
@@ -41,9 +41,7 @@ export const actions={
         links
       }
       commit(UPDATE_GLOBAL_INFO,result)
-      return Promise.resolve(result)
     } catch (error) {
-      return Promise.reject(error)
     }
   }
 }

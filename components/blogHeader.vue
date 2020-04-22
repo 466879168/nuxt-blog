@@ -14,15 +14,12 @@
         <div class="nav-wrapper">
           <ul class="nav-view h-f-100">
             <li class="nav-item h-f-100" v-for="item in menu" :key="item.key">
-              <nuxt-link>
                 {{item.title}}
-              </nuxt-link>
             </li>
           </ul>
         </div>
       </div>
     </div>
-    这是header
   </div>
 </template>
 

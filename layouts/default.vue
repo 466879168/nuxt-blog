@@ -9,8 +9,12 @@
 import blogHeader from '~/components/blogHeader.vue'
 
 export default {
+  name:"App",
   components: {
     blogHeader
+  },
+  async asyncData(){
+    await store.dispatch()
   }
 }
 </script>
