@@ -29,7 +29,15 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/element-ui'
+    {
+      src: '@/plugins/axios',
+      ssr: true
+    },
+    {
+      src: '@/plugins/element-ui',
+      ssr: true
+    },
+    
   ],
   /*
   ** Nuxt.js dev-modules
@@ -48,6 +56,10 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    
+  },
+  proxy:{
+    
   },
   /*
   ** Build configuration
@@ -58,24 +70,6 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
-    },
-    vendor:['axios']
-  },
-  proxy: {
-    '/api': {
-      target: 'http://106.54.232.85',
-      // target: 'http://localhost:8888',
-      pathRewrite: {
-        '^/api': '/'
-      }
-    },
-    '/wp-content': {
-      target: 'http://106.54.232.85'
-      // target: 'http://106.54.232.85/'
     }
-  },
-
-  env: {
-    baseUrl: '/api'
   }
 }
