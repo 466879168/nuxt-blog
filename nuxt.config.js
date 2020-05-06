@@ -29,15 +29,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {
-      src: '@/plugins/axios',
-      ssr: true
-    },
-    {
-      src: '@/plugins/element-ui',
-      ssr: true
-    },
-    
+    '@/plugins/element-ui'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -56,10 +48,6 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    
-  },
-  proxy:{
-    
   },
   /*
   ** Build configuration
