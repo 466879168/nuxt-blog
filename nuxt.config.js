@@ -1,35 +1,39 @@
-
+const PROXY_TARGET='http://106.54.232.85/wp-json'
 export default {
   mode: 'universal',
   /*
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: "前端学习之路",
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/my-ico.ico' }
     ]
   },
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: false,
   /*
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    '@assets/styles/base.less'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/element-ui'
+    {
+      src:"@/plugins/element-ui",
+      ssr:true
+    },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -48,6 +52,12 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    proxy:true
+  },
+  proxy: {
+    '/service': {
+      target: PROXY_TARGET
+    }
   },
   /*
   ** Build configuration
