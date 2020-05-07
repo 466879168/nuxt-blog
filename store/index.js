@@ -1,7 +1,7 @@
 export const state =()=>({
   info:{},
-  menu:{},
-  subMenu:{},
+  menu:[],
+  subMenu:[],
   link:[],
   errorInfo:{
     code:null,
@@ -13,8 +13,9 @@ export const state =()=>({
 export const mutations={
   updateGlobalInfo(state,data){
     console.log(data)
-    state.info=data
-    // state.menu=data.menu
+    state.info=data.info
+    state.menu=data.menu.mainMenu
+    state.subMenu=data.menu.subMenu
     // state.subMenu=data.subMenu
     // state.links=data.links
   },
@@ -32,7 +33,13 @@ export const mutations={
 
 export const actions={
   async nuxtServerInit({commit}){
-    let data=await this.$axios.$get('http://106.54.232.85/wp-json/dylan-blog/v1/info')
+    let globalInfo=await this.$axios.$get('http://106.54.232.85/wp-json/dylan-blog/v1/info')
+    let menu=await this.$axios.$get('http://106.54.232.85/wp-json/dylan-blog/v1/menu')
+    // let links=await this.$axios.$get('http://106.54.232.85/wp-json/dylan-blog/v1/info')
+    let data={
+      info:globalInfo,
+      menu:menu
+    }
     commit("updateGlobalInfo",data)
   }
 }
