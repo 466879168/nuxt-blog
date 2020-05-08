@@ -5,7 +5,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: "前端学习之路",
+    title: "",
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -23,9 +23,17 @@ export default {
   ** Global CSS
   */
   css: [
+    /**
+     * 配置全局 css
+     */
     'element-ui/lib/theme-chalk/index.css',
-    '@assets/styles/base.less'
+    '@assets/styles/global.less',
   ],
+  styleResources:{
+    less:[
+      './assets/styles/variable.less'
+    ]
+  },
   /*
   ** Plugins to load before mounting the App
   */
@@ -46,6 +54,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/style-resources'
   ],
   /*
   ** Axios module configuration

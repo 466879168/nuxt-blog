@@ -22,7 +22,14 @@
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
+    "@nuxtjs/style-resources": "^1.0.0",
     "less": "^3.11.1",
     "less-loader": "^6.0.0"
-  }
+  },
+  "browserslist": [
+    ">1%",
+    "last 2 versions",
+    "not ie <=8",
+    "safari 6"
+  ]
 }

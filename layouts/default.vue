@@ -1,23 +1,29 @@
 <template>
   <div id="app">
     <div class="mask"></div>
-    <nav></nav>
+    <default-header></default-header>
     <div class="main">
       <div class="wrap">
         <div class="content">
           <nuxt />
         </div>
+        <default-sidebar></default-sidebar>
       </div>
     </div>
+    <default-footer></default-footer>
   </div>
 </template>
 
 <script>
-  import nav from "~/components/nav"
+  import defaultHeader from "~/components/defaultHeader"
+  import defaultFooter from "~/components/defaultFooter"
+  import defaultSidebar from "~/components/defaultSidebar";
   export default {
     name:"default",
     components:{
-      nav
+      defaultHeader,
+      defaultFooter,
+      defaultSidebar
     },
   }
 </script>

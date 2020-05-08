@@ -2,17 +2,16 @@ export const state =()=>({
   info:{},
   menu:[],
   subMenu:[],
-  link:[],
+  links:[],
   errorInfo:{
-    code:null,
-    message:null
+    code:"",
+    message:""
   },
   menuStatus:false
 })
 
 export const mutations={
   updateGlobalInfo(state,data){
-    console.log(data)
     state.info=data.info
     state.menu=data.menu.mainMenu
     state.subMenu=data.menu.subMenu
@@ -21,12 +20,10 @@ export const mutations={
   },
 
   updateErrorMessage(state,data){
-    console.log(data)
     state.errorInfo=data
   },
 
   updateMenuStatus(state,flag){
-    console.log(flag)
     state.menuStatus=flag
   }
 }
