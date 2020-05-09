@@ -7,7 +7,7 @@
         <div class="logo">
           <h1>{{info.blogName}}</h1>
           <nuxt-link :to="{name:'index'}">
-            <img :src="info.logo" alt="" class="vertical-middle" width="130" height="40">
+<!--            <img :src="info.logo" alt="" class="vertical-middle" width="130" height="40">-->
           </nuxt-link>
         </div>
          <!--logo-->
@@ -53,8 +53,10 @@
         <!--搜索栏-->
         <div class="search">
           <div class="search-wrapper">
-            <div class="cearch-content">
-              <el-input size="small" v-model="input" placeholder="请输入内容"></el-input>
+            <div class="search-content">
+              <el-input size="small" placeholder="请输入内容" v-model="input" class="input-with-select">
+                <el-button size="small" slot="append" icon="el-icon-search"></el-button>
+              </el-input>
             </div>
           </div>
           <el-button size="small" type="primary" icon="el-icon-edit"></el-button>
@@ -118,8 +120,10 @@
     margin: 0 20px;
     .nav-menu{
       display: flex;
+
     }
    .nav-item{
+     text-align: center;
      position: relative;
      width: 100px;
      .first-link{
@@ -127,7 +131,32 @@
        padding: 0 10px;
        line-height: @headerHeight;
      }
+     .sub-nav-wrapper{
+       position: absolute;
+       top: 100%;
+       left: 50%;
+       transform: translateX(-50%);
+       display: none;
+       width: 150px;
+       .sub-nav-menu{
+         position: relative;
+         top: 10px;
+         background:@color-white ;
+         border-radius: @border-radius;
+         .sub-nav-item{
+           line-height: 30px;
+           color: #ab9399;
+           &:hover{
+             color: #ccc;
+           }
+         }
+       }
+     }
      &:hover{
+       border-bottom: 2px solid @color-theme;
+       .first-link{
+         color:@color-theme ;
+       }
        .sub-nav-wrapper{
          display: block;
        }
@@ -141,6 +170,11 @@
       .search-content{
         display: flex;
         align-items: center;
+        border-radius: 1px solid @color-main-background;
+        border-radius: @border-radius;
+        input[type="text"]{
+
+        }
       }
     }
   }

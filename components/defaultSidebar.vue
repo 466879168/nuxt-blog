@@ -1,12 +1,12 @@
 <template>
-  <div class="wrap">
+  <div>
     <!--公告-->
-    <div class="notice">
+    <div class="notice sidebar-list">
       <div class="header">
-          孟洋的小站
+          xlrsr的小站
       </div>
       <div class="content">
-
+        记录技术的网站
       </div>
       <ul>
         <li>
@@ -16,7 +16,7 @@
     </div>
     <!--公告-->
     <!--评论-->
-    <div class="comment">
+    <div class="comment sidebar-list">
       <div class="title">
         <p>
           最新评论
@@ -30,7 +30,7 @@
     </div>
     <!--评论-->
     <!--站点统计-->
-    <div class="count">
+    <div class="count sidebar-list">
       <div class="title">
         <p>站点统计</p>
       </div>
@@ -57,7 +57,7 @@
     </div>
     <!--站点统计-->
     <!--标签云-->
-    <div class="cloud">
+    <div class="cloud sidebar-list">
       <div class="title">
         <p>
           标签云
@@ -80,6 +80,32 @@
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+  .sidebar-list{
+    margin-top: @container-margin;
+    padding: @container-padding;
+    border-radius: @border-radius;
+    background: @color-white;
+    &：first-of-type{
+      margin-top: 0;
+    }
+    .title{
+      margin-bottom: 5px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid @color-border;
+      p{
+        position: relative;
+        display: inline-block;
+        &:after{
+          content: "";
+          position: absolute;
+          bottom: -6px;
+          left: 0;
+          width: 100px;
+          height: 2px;
+          background: @color-theme;
+        }
+      }
+    }
+  }
 </style>
