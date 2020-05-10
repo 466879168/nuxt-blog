@@ -37,7 +37,7 @@
       }
     },
     mounted() {
-      console.log(this.subMenu)
+    
     },
     computed:{
       ...mapState(['menuStatus', 'links', 'subMenu', 'errorInfo'])

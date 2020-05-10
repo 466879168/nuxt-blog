@@ -10,7 +10,7 @@
       </div>
       <ul>
         <li>
-
+          
         </li>
       </ul>
     </div>
@@ -23,8 +23,10 @@
         </p>
       </div>
       <ul class="content">
-        <li class="item">
+        <li class="item" v-for="item in sidebar.newComment" :key="item.key">
+          <template>
 
+          </template>
         </li>
       </ul>
     </div>
@@ -36,22 +38,22 @@
       </div>
       <ul class="content">
         <li class="item">
-          标签：{{}}个
+          标签：{{sidebar.getAllCountTag}}个
         </li>
         <li class="item">
-          文章：{{}}篇
+          文章：{{sidebar.getAllCountArticle}}篇
         </li>
         <li class="item">
-          页面：{{}}个
+          页面：{{sidebar.getAllCountPage}}个
         </li>
         <li class="item">
-          评论：{{}}条
+          评论：{{sidebar.getAllCountComment}}条
         </li>
         <li class="item">
-          分类：{{}}个
+          分类：{{sidebar.getAllCountCat}}个
         </li>
         <li class="item">
-          最后更新：{{}}
+          最后更新：{{sidebar.lastUpDate}}
         </li>
       </ul>
     </div>
@@ -62,7 +64,7 @@
         <p>
           标签云
         </p>
-        <router-link :to="{ name: 'tags' }">更多</router-link>
+        <router-link :to="'1'">更多</router-link>
       </div>
       <ul>
         <li>
@@ -75,8 +77,25 @@
 </template>
 
 <script>
+  import {mapState} from "vuex"
   export default {
-    name: "defaultSidebar"
+    name: "defaultSidebar",
+    computed:{
+      ...mapState({
+        sidebar:state=>({
+          newComment: state.info.newComment,
+          isOpenTextThumbnail: state.info.isOpenTextThumbnail,
+          isOpenAsideCount: state.info.isOpenAsideCount,
+          getAllCountTag: state.info.getAllCountTag,
+          getAllCountArticle: state.info.getAllCountArticle,
+          getAllCountPage: state.info.getAllCountPage,
+          getAllCountComment: state.info.getAllCountComment,
+          getAllCountCat: state.info.getAllCountCat,
+          lastUpDate: state.info.lastUpDate,
+          tagCloud: state.info.tagCloud
+        })
+      })
+    }
   }
 </script>
 

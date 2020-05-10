@@ -7,7 +7,7 @@
         <div class="logo">
           <h1>{{info.blogName}}</h1>
           <nuxt-link :to="{name:'index'}">
-<!--            <img :src="info.logo" alt="" class="vertical-middle" width="130" height="40">-->
+            <img :src="info.logo" alt="" class="vertical-middle" width="130" height="40">
           </nuxt-link>
         </div>
          <!--logo-->
@@ -52,15 +52,15 @@
         <!--nav-->
         <!--搜索栏-->
         <div class="search">
-          <div class="search-wrapper">
+          <div class="search-wrapper" >
             <div class="search-content">
               <el-input size="small" placeholder="请输入内容" v-model="input" class="input-with-select">
                 <el-button size="small" slot="append" icon="el-icon-search"></el-button>
               </el-input>
             </div>
           </div>
-          <el-button size="small" type="primary" icon="el-icon-edit"></el-button>
-          <el-button size="small" type="primary" icon="el-icon-s-fold"></el-button>
+          <el-button class="search-btn" size="small" type="primary" icon="el-icon-edit"></el-button>
+          <el-button class="menu-btn" size="small" type="primary" icon="el-icon-s-fold"></el-button>
         </div>
         <!--搜索栏-->
       </div>
@@ -144,10 +144,14 @@
          background:@color-white ;
          border-radius: @border-radius;
          .sub-nav-item{
-           line-height: 30px;
+           line-height: 40px;
            color: #ab9399;
+           border-radius: @border-radius;
            &:hover{
-             color: #ccc;
+             background: @color-theme;
+             a{
+               color: #fff;
+             }
            }
          }
        }
@@ -167,16 +171,25 @@
   .search{
     .search-wrapper{
       width: 200px;
+      display: none;
       .search-content{
-        display: flex;
-        align-items: center;
         border-radius: 1px solid @color-main-background;
         border-radius: @border-radius;
-        input[type="text"]{
-
-        }
       }
     }
   }
 }
+  @media screen and(min-width: 1200px) {
+    .nav{
+      .search-wrapper{
+        display: inline-block;
+      }
+      .search-btn{
+        display: none;
+      }
+      .menu-btn{
+        display: none;
+      }
+    }
+  }
 </style>
