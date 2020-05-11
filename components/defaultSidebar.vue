@@ -10,7 +10,7 @@
       </div>
       <ul>
         <li>
-          
+
         </li>
       </ul>
     </div>
@@ -123,6 +123,16 @@
           width: 100px;
           height: 2px;
           background: @color-theme;
+        }
+      }
+    }
+    .count{
+      .content{
+        .item{
+          li{
+            float: left;
+            width: 100px;
+          }
         }
       }
     }

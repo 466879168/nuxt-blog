@@ -3,7 +3,7 @@
     <div :class="['mask',menuStatus && 'is-show-menu']" @click="closeMenu"></div>
     <default-header></default-header>
     <div :class="['main',menuStatus && 'is-show-menu']">
-      <div class="wrap">
+      <div class="wrap layout">
         <div class="content">
           <nuxt />
         </div>
