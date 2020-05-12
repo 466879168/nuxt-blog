@@ -12,7 +12,6 @@ export const state =()=>({
 
 export const mutations={
   updateGlobalInfo(state,data){
-    console.log(data);
     state.info=data.info
     state.menu=data.menu.mainMenu
     state.subMenu=data.menu.subMenu

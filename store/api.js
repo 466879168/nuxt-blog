@@ -1,17 +1,10 @@
 export const actions={
-  //获取基本信息
-async getUserInfo(context,params){
-  let globalInfo=await this.$axios.get('/dylan-blog/v1/info')
-  // let menu=await this.$axios.get('/dylan-blog/v1/menu')
-  // let links=await this.$axios.get('/dylan-blog/v1/get-links?type=home')
-  let result={
-    info:globalInfo,
-    // menu:menu.mainMenu,
-    // subMenu:menu.subMenu,
-    // links:links
+  //获取文章列表
+  async getArticleList(content,params){
+    let {data} =await this.$axios.$get("http://106.54.232.85/wp-json//wp/v2/posts")
+    return data
   }
-  return result
-},
+
 }
 
 
