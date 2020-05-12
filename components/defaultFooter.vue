@@ -7,10 +7,10 @@
       <div class="copyright">
         <ul class="footer-menu">
           <li class="footer-item" v-for="item in subMenu" :key="item.key">
-            <nuxt-link v-if="item.object === 'category'">
+            <nuxt-link v-if="item.object === 'category'" :to="'1'">
               {{item.title}}
             </nuxt-link >
-            <nuxt-link v-else-if="item.object === 'page'">
+            <nuxt-link v-else-if="item.object === 'page'" :to="'1'">
               {{item.title}}
             </nuxt-link>
             <a v-else-if="item.object === 'custom'" :href="item.url">

@@ -15,8 +15,11 @@ name:"error",
 props:['error'],
 layout:'page',
 created(){
-
-}
+  this.$store.commit("updateErrorMessage",{code:this.error.statusCode,message:this.error.message})
+},
+  beforeDestroy() {
+    this.$store.commit("updateErrorMessage",{code:null,message:''})
+  }
 
 }
 </script>
