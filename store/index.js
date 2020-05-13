@@ -33,7 +33,7 @@ export const actions={
   async nuxtServerInit({commit}){
     let globalInfo=await this.$axios.$get(`${process.env.baseUrl}/wp-json/dylan-blog/v1/info`)
     let menu=await this.$axios.$get(`${process.env.baseUrl}/wp-json/dylan-blog/v1/menu`)
-    // let links=await this.$axios.$get('http://106.54.232.85/wp-json/dylan-blog/v1/info')
+    // let links=await this.$axios.$get
     let data={
       info:globalInfo.data,
       menu:menu.data

@@ -70,14 +70,14 @@ export default {
   },
   proxy:{
     '/api': {
-      target: 'http://106.54.232.85',
+      target: 'http://mengyang.info',
       // target: 'http://localhost:8888',
       pathRewrite: {
         '^/api': '/'
       }
     },
     '/wp-content': {
-      target: 'http://106.54.232.85'
+      target: 'http://mengyang.info'
       // target: 'http://localhost:8888'
     }
   },
