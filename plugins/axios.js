@@ -1,6 +1,7 @@
-export default function ({$axios,redirect}) {
+import axios from "~/.nuxt/axios";
+
+export default function ({ $axios, redirect }) {
   $axios.onRequest(config => {
-    console.log(config)
     if (config.method === 'get') {
       config.data && (config.progress = config.data.progress)
       config.data = null
@@ -35,3 +36,4 @@ export default function ({$axios,redirect}) {
     return Promise.reject(error)
   })
 }
+

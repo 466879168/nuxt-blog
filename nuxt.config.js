@@ -1,4 +1,4 @@
-const PROXY_TARGET='http://106.54.232.85/wp-json'
+
 export default {
   mode: 'universal',
   /*
@@ -39,6 +39,10 @@ export default {
   */
   plugins: [
     {
+      src: '~/plugins/axios',
+      ssr: true
+    },
+    {
       src:"@/plugins/element-ui",
       ssr:true
     },
@@ -54,7 +58,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/proxy'
   ],
   /*
   ** Axios module configuration
@@ -63,10 +68,21 @@ export default {
   axios: {
     proxy:true
   },
-  proxy: {
-    '/service': {
-      target: PROXY_TARGET
+  proxy:{
+    '/api': {
+      target: 'http://106.54.232.85',
+      // target: 'http://localhost:8888',
+      pathRewrite: {
+        '^/api': '/'
+      }
+    },
+    '/wp-content': {
+      target: 'http://106.54.232.85'
+      // target: 'http://localhost:8888'
     }
+  },
+  env: {
+    baseUrl: '/api'
   },
   /*
   ** Build configuration

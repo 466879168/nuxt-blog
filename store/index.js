@@ -12,6 +12,7 @@ export const state =()=>({
 
 export const mutations={
   updateGlobalInfo(state,data){
+    console.log(data)
     state.info=data.info
     state.menu=data.menu.mainMenu
     state.subMenu=data.menu.subMenu
@@ -30,12 +31,12 @@ export const mutations={
 
 export const actions={
   async nuxtServerInit({commit}){
-    let globalInfo=await this.$axios.$get('http://106.54.232.85/wp-json/dylan-blog/v1/info')
-    let menu=await this.$axios.$get('http://106.54.232.85/wp-json/dylan-blog/v1/menu')
+    let globalInfo=await this.$axios.$get(`${process.env.baseUrl}/wp-json/dylan-blog/v1/info`)
+    let menu=await this.$axios.$get(`${process.env.baseUrl}/wp-json/dylan-blog/v1/menu`)
     // let links=await this.$axios.$get('http://106.54.232.85/wp-json/dylan-blog/v1/info')
     let data={
-      info:globalInfo,
-      menu:menu
+      info:globalInfo.data,
+      menu:menu.data
     }
     commit("updateGlobalInfo",data)
   }
