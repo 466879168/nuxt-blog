@@ -47,37 +47,26 @@ export default {
       ssr:true
     },
   ],
-  /*
-  ** Nuxt.js dev-modules
-  */
   buildModules: [
   ],
-  /*
-  ** Nuxt.js modules
-  */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@nuxtjs/proxy'
   ],
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
   axios: {
     proxy:true
   },
   proxy:{
     '/api': {
-      target: 'http://mengyang.info',
+      target: 'http://106.54.232.85',
       // target: 'http://localhost:8888',
       pathRewrite: {
         '^/api': '/'
       }
     },
     '/wp-content': {
-      target: 'http://mengyang.info'
+      target: 'http://106.54.232.85'
       // target: 'http://localhost:8888'
     }
   },

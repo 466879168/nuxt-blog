@@ -10,7 +10,7 @@
             <span class="classify">
               {{item.articleInfor.classify[0].name}}
             </span>
-            <nuxt-link :to="'1'" class="vertical-middle">
+            <nuxt-link  class="vertical-middle" :to="{name:'details-id',params:{id:item.id}}">
               {{item.title.rendered}}
             </nuxt-link>
           </h2>
@@ -30,9 +30,9 @@
 <!--            <span>-->
 <!--              {{ item.articleInfor.xmLike.very_good }}-->
 <!--            </span>-->
-            <nuxt :to="'1'">
+            <nuxt-link class="details-btn" :to="{name:'details-id',params:{id:item.id}}">
               阅读详情
-            </nuxt>
+            </nuxt-link>
           </div>
         </div>
       </article>
@@ -139,7 +139,7 @@ export default {
                 right: -10px;
                 top: 50%;
                 border: 5px solid @color-theme;
-                transform: translateX(-50%);
+                transform: translateY(-50%);
               }
             }
           }

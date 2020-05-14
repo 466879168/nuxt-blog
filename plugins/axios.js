@@ -1,5 +1,3 @@
-import axios from "~/.nuxt/axios";
-
 export default function ({ $axios, redirect }) {
   $axios.onRequest(config => {
     if (config.method === 'get') {
