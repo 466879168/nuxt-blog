@@ -46,6 +46,10 @@ export default {
       src:"@/plugins/element-ui",
       ssr:true
     },
+    {
+      src:"@/plugins/loading",
+      ssr:false
+    },
   ],
   buildModules: [
   ],

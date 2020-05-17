@@ -3,12 +3,12 @@
     <!--文章内容开始-->
     <article class="section article">
       <h2 class="title">
-<!--        {{detail.title.rendered}}-->
+        {{ detail.title.rendered }}
       </h2>
       <div class="other-info">
         <p class="">
           <span class="author">
-             {{ detail.articleInfor.author }}
+            {{ detail.articleInfor.author }}
           </span>
           <time>
             {{ detail.date }}
@@ -18,29 +18,25 @@
           <span class="text m-l-10">
             分类:
           </span>
-           <span
+          <span
             class="classify"
-            v-for="(itme, index) in detail.articleInfor.classify" :key="index">
-<!--            {{-->
-<!--              index === detail.articleInfor.classify.length - 1-->
-<!--                ? item.name-->
-<!--                : `${item.name}`-->
-<!--            }}-->
-             {{item.name}}
+            v-for="(item, index) in detail.articleInfor.classify"
+            :key="index"
+          >
+            {{ item.name }}
           </span>
           <span class="m-l-5">
-<!--            {{ viewCount }}-->
+            <!--            {{ viewCount }}-->
           </span>
           <span class="m-l-5">
-            detail.articleInfor.commentCount
+            {{detail.articleInfor.commentCount}}
           </span>
         </p>
       </div>
-      <!-- <div class="content-details" ref="articleContent">
-        {{ detail.content.rendered }}
-      </div> -->
+      <div class="content-details" ref="articleContent" v-html="detail.content.rendered">
+      </div>
     </article>
-    <div class="section copyright" v-if="info.inSpenArticleCopyright">
+    <div class="section copyright">
       <p>
         <strong>
           版权声明:
@@ -76,7 +72,7 @@
     </div>
     <!--点赞结束-->
     <!--分享开始-->
-    <div class="share text-center">
+    <!-- <div class="share text-center">
       <span class="text">
         <a href="" target="_blank"></a>
         <a href="" target="_blank"></a>
@@ -84,7 +80,7 @@
         <a href="" target="_blank"></a>
         <a href="" target="_blank"></a>
       </span>
-    </div>
+    </div> -->
     <!--分享结束-->
     <!--标签开始-->
     <div class="tag-wrap text-center"></div>
@@ -98,18 +94,26 @@ export default {
   name: "articleDetail",
   fetch({ params, error, store }) {
     // store.dispatch("article/updateArticleViewCount",{id:params.id})
-    let result=store.dispatch("article/getArticleDetail",params.id)
+    return store.dispatch("article/getArticleDetail", params.id);
   },
   components: {},
   data() {
-    return {};
+    return {
+      fullPath:"",
+    };
+  },
+  created(){
+    this.fullPath=`${this.info.domain.replace(/\/$/, '')}${this.$route.path}`
+  },
+  mounted() {
+    console.log(this.info);
   },
   computed: {
     ...mapState(["info"]),
     ...mapState("article", ["detail", "viewCount", "opinion"])
   },
   methods: {
-    updateOpinion(index) {}
+    updateOpinion() {}
   }
 };
 </script>

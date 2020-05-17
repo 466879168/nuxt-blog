@@ -14,13 +14,21 @@
       <h2 class="cmment-title">
         {{`共 ${detail.pageInfor.commentCount} 条评论关于 “${detail.title.rendered}”`}}
       </h2>
+      <client-only>
+          
+      </client-only> 
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
   export default {
-    name: "_id"
+    name: "page",
+    layout:'page',
+    fetch({params,store}){
+      return stpre.dispatch("")
+    },
   }
 </script>
 

@@ -12,6 +12,7 @@ export const mutations = {
     state.articleList = data;
   },
   setArticleDetail(state, data) {
+    console.log(data);
     state.detail = data;
   },
   setTotal(state, num) {
