@@ -27,8 +27,17 @@ import { mapState } from "vuex";
     name: "page",
     layout:'page',
     fetch({params,store}){
-      return stpre.dispatch("")
+      return stpre.dispatch("page/getPageDetail",params.id)
     },
+    computed:{
+      ...mapState(['info']),
+      ...mapState('page',['detail'])
+    },
+    head(){
+      return {
+        title:`${this.detail.title.rendered}|${this.info.blogName}`
+      }
+    }
   }
 </script>
 
