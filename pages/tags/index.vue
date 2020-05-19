@@ -7,8 +7,8 @@
     </h2>
     <ul class="wrap">
       <li v-for="item in info.tagCloud" :key="item.key" class="list" :class="`color-${Math.floor(Math.random()*8)+1}`">
-        <nuxt-link :to="'1'" query: { type: item.term_id, title: item.name }>
-          {{item.name}}{{item.count}}
+        <nuxt-link :to="{ name: 'tags-id', params: { id: 1 }, query: { type: item.term_id, title: item.name } }">
+          {{item.name}}({{item.count}})
         </nuxt-link>
       </li>
     </ul>
@@ -45,7 +45,7 @@ export default {
       &::after{
         content: "";
         display: block;
-        width: 20px;
+        width: 100px;
         height: 2px;
         margin: 5px 0 0 0;
         background: @color-main-text;

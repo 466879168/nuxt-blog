@@ -12,7 +12,6 @@ export const mutations = {
     state.articleList = data;
   },
   setArticleDetail(state, data) {
-    console.log(data);
     state.detail = data;
   },
   setTotal(state, num) {
@@ -46,9 +45,9 @@ export const actions = {
         }
       );
       data.map(item => {
-        item.articleInfor.thumbnail = item.articleInfor.thumbnail
-          ? item.articleInfor.thumbnail.replace(/https?:\/\/(\w+\.)+\w+(:\d+)?/, "") : rootState.info.thumbnail;
-        item.date = item.date.replace("T", " ");
+        // item.articleInfor.thumbnail = item.articleInfor.thumbnail
+        //   ? item.articleInfor.thumbnail.replace(/https?:\/\/(\w+\.)+\w+(:\d+)?/, "") : rootState.info.thumbnail;
+        // item.date = item.date.replace("T", " ");
         commit("updataArticleList", data);
         commit("setTotal", +headers["x-wp-total"]);
       });

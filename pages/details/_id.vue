@@ -2,10 +2,10 @@
   <div class="container">
     <!--文章内容开始-->
     <article class="section article">
-      <h2 class="title">
+      <h2 class="title tc">
         {{ detail.title.rendered }}
       </h2>
-      <div class="other-info">
+      <div class="other-info tc">
         <p class="">
           <span class="author">
             {{ detail.articleInfor.author }}
@@ -106,7 +106,8 @@ export default {
     this.fullPath=`${this.info.domain.replace(/\/$/, '')}${this.$route.path}`
   },
   mounted() {
-    console.log(this.info);
+    //下面这行代码解决prismjs不能异步加载必须刷新一下才显示的问题
+    process.browser && document.querySelectorAll('pre code').forEach(block => Prism.highlightElement(block))
   },
   computed: {
     ...mapState(["info"]),
@@ -125,4 +126,92 @@ export default {
   background: @color-white;
   border-radius: @border-radius;
 }
+  .article{
+    margin-top: 0;
+    .title{
+      padding: 10px 0;
+      font-size: 20px;
+    }
+    .other-info{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid @color-main-background;
+      color: @color-sub-text;
+    }
+  }
+  .content-details{
+    line-height: 2;
+    word-break: break-all;
+    /deep/ a{
+      color: @color-theme;
+    }
+    /deep/ h2{
+      margin-top: 10px;
+    }
+    /deep/ h1,
+    /deep/ h2{
+      font-size: @font-size-large;
+    }
+    /deep/ h4,
+    /deep/ h5,
+    /deep/ h6{
+      font-size: @font-size-small;
+    }
+    /deep/ img{
+      height: auto!important;
+      box-shadow: 0 0 10px #d2d2d2;
+    }
+  }
+
+  /deep/ div.code-toolbar{
+    overflow: hidden;
+    width: 100%;
+    margin: 20px 0;
+    padding-top: 30px;
+    border-radius: @border-radius;
+    pre{
+      margin: 0;
+      border: 1px solid @color-main-background;
+      border-top:0px ;
+    }
+    code{
+      border: 0;
+      box-shadow: none;
+      background-size: 4em 4em;
+      line-height: 2;
+    }
+    .line-numbers .line-numbers-rows {
+      border-color: @color-main-background;
+    }
+    .toolbar{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 30px;
+      background: @color-theme;
+      opacity: 1;
+      span{
+        background: none;
+        box-shadow: none;
+        border-radius: 0;
+        color: @color-white;
+      }
+    }
+    .toolbar-item{
+      padding-left: 20px;
+      span:hover{
+        color: @color-white;
+      }
+      &::before{
+        content: "\e7ae";
+        font-family: "iconfont";
+        color: @color-white;
+      }
+    }
+  }
 </style>

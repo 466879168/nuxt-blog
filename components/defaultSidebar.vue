@@ -52,14 +52,14 @@
             <nuxt-link
               v-if="item.postType === 'post'"
               class="linkto"
-              :to="'1'"
+              :to="{ name: 'details-id', params: { id: item.id }}"
             >
               评：{{ item.title }}
             </nuxt-link>
             <nuxt-link
               v-else-if="item.postType === 'page'"
               class="block title"
-              :to="'1'"
+              :to="{name: 'page-id', params: { id: item.id }}"
             >
               评：{{ item.title }}
             </nuxt-link>
@@ -76,11 +76,13 @@
       <ul class="content clearfix">
         <li>标签：{{ sidebar.getAllCountTag }}个</li>
         <li>文章：{{ sidebar.getAllCountArticle }}篇</li>
-        <li>页面：{{ sidebar.getAllCountPage }}个</li>
+<!--        <li>页面：{{ sidebar.getAllCountPage }}个</li>-->
         <li>评论：{{ sidebar.getAllCountComment }}条</li>
         <li>分类：{{ sidebar.getAllCountCat }}个</li>
-        <li>最后更新：{{ sidebar.lastUpDate }}</li>
       </ul>
+      <div>
+        最后更新：{{ sidebar.lastUpDate }}
+      </div>
     </div>
     <!--站点统计-->
     <!--标签云-->
@@ -99,7 +101,7 @@
             class="list"
             :class="`color-${Math.floor(Math.random() * 8 + 1)}`"
           >
-            <nuxt-link :to="'1'">
+            <nuxt-link :to="{ name: 'tags-id', params: { id: 1 }, query: { type: item.term_id, title: item.name } }">
               {{ item.name }}
             </nuxt-link>
           </div>

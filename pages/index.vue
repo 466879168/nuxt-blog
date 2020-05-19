@@ -17,7 +17,7 @@
           <p class="summary">
             {{item.articleInfor.summary}}
           </p>
-          <div class="information">
+          <div class="information clearfix">
             <span>
               {{item.date}}
             </span>
@@ -30,7 +30,7 @@
 <!--            <span>-->
 <!--              {{ item.articleInfor.xmLike.very_good }}-->
 <!--            </span>-->
-            <nuxt-link class="details-btn" :to="{name:'details-id',params:{id:item.id}}">
+            <nuxt-link class="details-btn tc" :to="{name:'details-id',params:{id:item.id}}">
               阅读详情
             </nuxt-link>
           </div>
@@ -39,6 +39,7 @@
       <!--分页-->
       <div class="footer-content">
         <el-pagination
+        @current-change="changePagination"
           layout="prev, pager, next"
           :total="total"
           :current-page="currentPage"
@@ -75,11 +76,20 @@ export default {
     ...mapState('article', ['articleList', 'total', 'currentPage'])
   },
   methods:{
+    changePagination(id){
+      this.$router.push({
+        name:"article-id-title",
+        params:{id}
+      })
+    }
   }
 }
 </script>
 
 <style lang="less" scoped>
+.container /deep/ .el-pagination{
+  text-align: center;
+}
   .container{
     .article-wrap{
       margin-top:@container-margin;
@@ -90,63 +100,6 @@ export default {
         padding-bottom:@container-padding;
         border-bottom: 1px solid @color-main-background;
         font-size: @font-size-large;
-      }
-      .article-list{
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        height: 145px;
-        padding: 20px 0;
-        border-bottom: 1ox solid @color-main-background;
-        &::after{
-          content: "";
-          position: absolute;
-          bottom: -1px;
-          left: 0;
-          width: 0;
-          height: 1px;
-          background: @color-theme;
-          transition: .4s;
-        }
-        &:hover{
-          &:after{
-            width: 100%;
-          }
-        }
-        .list-content{
-          flex: 1;
-          position: relative;
-          .title{
-            margin-bottom: 10px;
-            font-size: 18px;
-            a{
-              color: #333;
-              &:hover{
-                color: @color-theme;
-              }
-            }
-            .classify{
-              position: relative;
-              margin-right: 10px;
-              padding: 3px 5px;
-              background: @color-theme;
-              border-radius: 3px;
-              font-size: @font-size-small;
-              color: @color-white;
-              &:after{
-                content: "";
-                position: absolute;
-                right: -10px;
-                top: 50%;
-                border: 5px solid @color-theme;
-                transform: translateY(-50%);
-              }
-            }
-          }
-          .summary{
-            line-height: 1.8;
-          }
-        }
       }
     }
   }

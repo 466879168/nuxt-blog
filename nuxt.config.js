@@ -12,7 +12,11 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/my-ico.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/my-ico.ico' },
+      { hid: 'prism', rel: 'stylesheet', href: '/css/prism.css'}
+    ],
+    script:[
+      { src: '/js/prism.js' },
     ]
   },
   /*

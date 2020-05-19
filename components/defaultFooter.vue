@@ -1,29 +1,36 @@
 <template>
-  <div :class="['footer',errorInfo.code && 'is-error',menuStatus && 'is-show-menu']">
+  <div class='footer'>
     <div class="wrap">
-      <div class="link-wrap" v-if="links.length && $route.name === 'index'">
+      <div class="link-wrap" v-if="$route.name === 'index'">
         <a v-for="(item,index) in links" href="item.url" :key="index" :target="item.target" :title="item.description"></a>
       </div>
       <div class="copyright">
-        <ul class="footer-menu">
-          <li class="footer-item" v-for="item in subMenu" :key="item.key">
-            <nuxt-link v-if="item.object === 'category'" :to="'1'">
-              {{item.title}}
-            </nuxt-link >
-            <nuxt-link v-else-if="item.object === 'page'" :to="'1'">
-              {{item.title}}
-            </nuxt-link>
-            <a v-else-if="item.object === 'custom'" :href="item.url">
-              {{item.title}}
-            </a>
-          </li>
-        </ul>
+        <div class="left">
+          <ul class="footer-menu">
+            <li class="list" v-for="item in subMenu" :key="item.key">
+              <nuxt-link v-if="item.object == 'category'" :to="{name:'category-id',params:{id:1},query:{type:item.object_id,title: item.title}}">
+                {{item.title}}
+              </nuxt-link>
+              <nuxt-link v-if="item.object == 'page'" :to="{name:'page-id',params: { id: item.object_id }}">
+                {{item.title}}
+              </nuxt-link>
+              <a v-else-if="item.object === 'custom'" :href="item.url">
+                {{item.title}}
+              </a>
+            </li>
+          </ul>
+          <div class="copyright-text">
+            {{copyright}}
+          </div>
+        </div>
+        <p class="right">Theme by <a href="https://www.xuanmo.xin">Xuanmo</a></p>
       </div>
     </div>
     <!--返回顶部-->
     <div class="back-top" @click="goTop" :class="{show:isShowBackTop}">
 
     </div>
+    <a href="beian.miit.gov.cn">豫ICP备20002538号</a>
   </div>
 </template>
 
@@ -37,10 +44,16 @@
       }
     },
     mounted() {
-    
+      let self=this
+      window.addEventListener('scroll',function  () {
+        self.isShowBackTop=this.scrollY>300
+      })
     },
     computed:{
-      ...mapState(['menuStatus', 'links', 'subMenu', 'errorInfo'])
+      ...mapState(['menuStatus', 'links', 'subMenu', 'errorInfo']),
+      ...mapState({
+        copyright:state=>state.info.copyright
+      })
     },
     methods:{
       goTop(){
@@ -70,8 +83,24 @@
     justify-content: space-between;
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border: 1px solid #ccc;
-    line-height: 5;
+    border: 1px solid #3b424a;
+    line-height: 2;
+    &::after{
+      content: "";
+      flex: aoto;
+    }
+    /deep/ a{
+      display: block;
+      margin-right: @container-margin;
+      font-size: @font-size-large;
+      color: #9295a2;
+      &:hover{
+        color: @color-theme;
+      }
+    }
+  }
+  .copyright{
+    display: flex;
   }
 }
 </style>

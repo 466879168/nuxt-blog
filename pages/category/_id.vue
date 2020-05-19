@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <ul class="header">
-      <li class="list">当前频道:{{ $route.query.titles }}</li>
+      <li class="list">当前频道:{{ $route.query.title }}</li>
     </ul>
     <div v-if="articleList.length === 0" class="not tc">
       暂无数据！
@@ -32,7 +32,7 @@
             <span>{{ item.date }}</span>
             <span>{{ item.articleInfor.viewCount }}</span>
             <span>{{ item.articleInfor.commentCount }}</span>
-            <span>{{ item.articleInfor.xmLike.very_good }}</span>
+            <!-- <span>{{ item.articleInfor.xmLike.very_good }}</span> -->
           </div>
           <nuxt-link
             class="details-btn tc"
@@ -44,8 +44,9 @@
       </div>
     </article>
     <el-pagination
+      v-if="articleList.length !== 0"
       :page-size="10"
-      layout="prev, pager, next, jumper"
+      layout="prev, pager, next"
       :current-page="currentPage"
       @current-change="changePagination"
       :total="total"
@@ -76,6 +77,8 @@ export default {
   computed: {
     ...mapState(["info"]),
     ...mapState("article", ["articleList", "total", "currentPage"])
+  },
+  mounted() {
   },
   methods: {
     changePagination(id) {

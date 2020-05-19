@@ -15,34 +15,34 @@
         <div class="nav-wrapper h-100">
           <ul class="nav-menu h-100">
             <li class="nav-item" v-for="item in menu" :key="item.key">
-              <nuxt-link v-if="item.object === 'category'" :to="'1'" class="first-link">
+              <nuxt-link v-if="item.object === 'category'" :to="{name:`${item.object}-id`,params:{id:1},query:{type: item.object_id, title: item.title}}" class="first-link">
                 {{ item.title }}
               </nuxt-link>
-              <nuxt-link v-else-if="item.object === 'page'" :to="'1'" class="first-link">
+              <nuxt-link v-else-if="item.object === 'page'" :to="{name:'page-id',params:{id:item.object_id}}" class="first-link">
                 {{ item.title }}
               </nuxt-link>
-              <nuxt-link v-else-if="item.object === 'post_tag'" :to="'1'" class="first-link">
+              <nuxt-link v-else-if="item.object === 'post_tag'" :to="{name:'tags-id',params:{id:1},query:{type: item.term_id, title: item.name}}" class="first-link">
                 {{ item.title }}
               </nuxt-link>
-              <nuxt-link v-else-if="item.object === 'custom'" :to="'1'" class="first-link">
+              <a v-else-if="item.object === 'custom' "class="first-link" :href="item.url">
                 {{ item.title }}
-              </nuxt-link>
+              </a>
               <!--二级菜单-->
               <div v-if="item.children.length !== 0" class="sub-nav-wrapper">
                 <ul class="sub-nav-menu">
                   <li class="sub-nav-item" v-for="children in item.children" :key="children.key">
-                    <nuxt-link v-if="item.object === 'category'" :to="'1'">
+                    <nuxt-link v-if="item.object === 'category'" :to="{name:'category-id',params: { id: 1 },query:{type: children.object_id, title: children.title}}">
                       {{children.title}}
                     </nuxt-link>
-                    <nuxt-link v-else-if="item.object === 'page'" :to="'1'">
+                    <nuxt-link v-else-if="item.object === 'page'" :to="{name: 'page-id',params: { id: children.object_id }}">
                       {{children.title}}
                     </nuxt-link>
-                    <nuxt-link v-else-if="item.object === 'post_tag'" :to="'1'">
+                    <nuxt-link v-else-if="item.object === 'post_tag'" :to="{ name: 'tags-id', params: { id: 1 }, query: { type: children.object_id, title: children.title }}">
                       {{children.title}}
                     </nuxt-link>
-                    <nuxt-link v-else-if="item.object === 'custom'" :to="'1'">
+                    <a v-else-if="item.object === 'custom'" :href="children.url">
                       {{children.title}}
-                    </nuxt-link>
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -55,7 +55,7 @@
           <div class="search-wrapper" >
             <div class="search-content">
               <el-input size="small" placeholder="请输入内容" v-model="input" class="input-with-select">
-                <el-button size="small" slot="append" icon="el-icon-search"></el-button>
+                <el-button  size="small" slot="append" icon="el-icon-search" @click="search"></el-button>
               </el-input>
             </div>
           </div>
@@ -81,7 +81,16 @@
       ...mapState(["info","menu","menuStatus"])
     },
     methods:{
-
+      search(){
+        this.$router.push({
+          name:"search",
+          query:{
+            page:1,
+            search:this.input
+          }
+        })
+        this.input=""
+      }
     }
   }
 </script>
@@ -98,6 +107,7 @@
     height: @headerHeight;
   }
   .content{
+    background: #fff;
     position: fixed;
     top: 0;
     left: 0;
@@ -127,6 +137,11 @@
      text-align: center;
      position: relative;
      width: 100px;
+     a{
+       display: inline-block;
+       width: 100%;
+       height: 100%;
+     }
      .first-link{
        display: block;
        padding: 0 10px;
@@ -171,26 +186,24 @@
   //搜索栏
   .search{
     .search-wrapper{
-      width: 200px;
-      display: none;
+      width: 230px;
       .search-content{
         border-radius: 1px solid @color-main-background;
         border-radius: @border-radius;
+        button{
+          width: 20px;
+        }
+        /deep/ .el-input-group__append{
+          width: 20px;
+        }
       }
+    }
+    .search-btn{
+      display: none;
+    }
+    .menu-btn{
+      display: none;
     }
   }
 }
-  @media screen and(min-width: 1200px) {
-    .nav{
-      .search-wrapper{
-        display: inline-block;
-      }
-      .search-btn{
-        display: none;
-      }
-      .menu-btn{
-        display: none;
-      }
-    }
-  }
 </style>
