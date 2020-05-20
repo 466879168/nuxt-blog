@@ -7,7 +7,7 @@
         <div class="logo">
           <h1>{{info.blogName}}</h1>
           <nuxt-link :to="{name:'index'}">
-<!--            <img :src="info.logo" alt="" class="vertical-middle" width="130" height="40">-->
+            <img :src="info.logo" alt="" class="vertical-middle" width="130" height="40">
           </nuxt-link>
         </div>
          <!--logo-->
