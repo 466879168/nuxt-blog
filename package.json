@@ -6,15 +6,12 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "nuxt build && npm start",
     "start": "nuxt start",
-    "generate": "nuxt generate"
-  },
-  "config": {
-    "nuxt": {
-      "host": "0.0.0.0",
-      "port": "8011"
-    }
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue .",
+    "precommit": "npm run lint",
+    "pm2": "pm2 start npm --name 'nuxt' -- run build --watch"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",

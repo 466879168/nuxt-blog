@@ -4,8 +4,8 @@
       <div class="link-wrap" v-if="$route.name === 'index'">
         <a v-for="(item,index) in links" href="item.url" :key="index" :target="item.target" :title="item.description"></a>
       </div>
-      <div class="copyright">
-        <div class="left">
+      <div class="copyright layout">
+        <div class="wrap">
           <ul class="footer-menu">
             <li class="list" v-for="item in subMenu" :key="item.key">
               <nuxt-link v-if="item.object == 'category'" :to="{name:'category-id',params:{id:1},query:{type:item.object_id,title: item.title}}">
@@ -19,18 +19,20 @@
               </a>
             </li>
           </ul>
-          <div class="copyright-text">
-            {{copyright}}
+          <div class="record">
+            <a href="http://www.beian.miit.gov.cn/" target="_blank">豫ICP备20002538号</a>
           </div>
-        </div>
-        <p class="right">Theme by <a href="https://www.xuanmo.xin">Xuanmo</a></p>
+          <div class="theme">
+             <a href="https://www.xuanmo.xin" target="_blank">Theme by Xuanmo</a>
+          </div>
+        </div> 
       </div>
     </div>
     <!--返回顶部-->
     <div class="back-top" @click="goTop" :class="{show:isShowBackTop}">
-
+      回到顶部
     </div>
-    <a href="beian.miit.gov.cn">豫ICP备20002538号</a>
+    
   </div>
 </template>
 
@@ -48,6 +50,8 @@
       window.addEventListener('scroll',function  () {
         self.isShowBackTop=this.scrollY>300
       })
+    },
+    watch:{
     },
     computed:{
       ...mapState(['menuStatus', 'links', 'subMenu', 'errorInfo']),
@@ -67,7 +71,10 @@
 .footer{
   margin-top: @container-margin;
   padding: 20px 0;
-  background:#ccc;
+  background:#2d3237;
+  div{
+    color: #9295a2;
+  }
   &.is-error{
     position: absolute;
     left: 0;
@@ -83,24 +90,39 @@
     justify-content: space-between;
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border: 1px solid #3b424a;
+    // border: 1px solid #3b424a;
     line-height: 2;
     &::after{
       content: "";
       flex: aoto;
     }
-    /deep/ a{
+  }
+  /deep/ a{
       display: block;
       margin-right: @container-margin;
-      font-size: @font-size-large;
+      font-size: @font-size-base;
       color: #9295a2;
       &:hover{
         color: @color-theme;
       }
     }
-  }
   .copyright{
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .back-top{
+    position: fixed;
+    z-index: 99;
+    right: 30px;
+    bottom: 40px;
+    transition: .5s;
+    transform: translateX(100px);
+    cursor:pointer;
+    &.show{
+      transform: translateX(0);
+    }
   }
 }
 </style>
