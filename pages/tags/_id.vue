@@ -21,7 +21,7 @@
         <div class="opeartion">
           <div class="information">
             <span>
-              {{ item.date }}
+              {{ item.date|dateTFormat }}
             </span>
             <span>
               {{ item.articleInfor.viewCount }}
@@ -32,10 +32,10 @@
             <!--<span>
               {{ item.articleInfor.xmLike.very_good }}
             </span>-->
-          </div>
-          <nuxt-link class="details-btn" :to="{name:'details-id',params:{id:item.id}}">
+            <nuxt-link class="details-btn" :to="{name:'details-id',params:{id:item.id}}">
             阅读详情
           </nuxt-link>
+          </div> 
         </div>
       </div>
     </article>

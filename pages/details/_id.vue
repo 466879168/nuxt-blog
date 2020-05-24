@@ -208,7 +208,7 @@ export default {
         color: @color-white;
       }
       &::before{
-        content: "\e7ae";
+        content: "\e604";
         font-family: "iconfont";
         color: @color-white;
       }

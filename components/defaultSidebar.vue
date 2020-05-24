@@ -3,14 +3,29 @@
     <!--公告-->
     <div class="notice sidebar-list">
       <div class="header">
-        xlrsr的小站
+        孟洋的博客小站
       </div>
       <div class="content">
-        记录技术的网站
+        记录日常工作遇到的问题和知识。
       </div>
-      <ul>
-        <li></li>
-      </ul>
+      <div class="smallicon" @click="goToHome">
+        <div>
+          <i class="iconfont icon-shouye"></i>
+        </div>
+        <div>
+          <i class="iconfont icon-qq"></i>
+        </div>
+        <div>
+          <i class="iconfont icon-weixin"></i>
+        </div>
+        <div>
+          <i class="iconfont icon-tubiaozhizuo-"></i>
+        </div>
+        <div>
+          <i class="iconfont icon-github"></i>
+        </div>
+      </div>
+
     </div>
     <!--公告-->
     <!--评论-->
@@ -131,6 +146,16 @@ export default {
         tagCloud: state.info.tagCloud
       })
     })
+  },
+  mounted(){
+    console.log(this.sidebar.newComment);
+  },
+  methods:{
+    goToHome(){
+      this.$router.push({
+        path:"/page/index"
+      })
+    },
   }
 };
 </script>
@@ -217,6 +242,55 @@ export default {
         }
         &.color-8 {
           background: #20bf6b;
+        }
+      }
+    }
+  }
+  .notice{
+    .smallicon{
+      display: flex;
+      justify-content: space-between;
+      div{
+        box-sizing: border-box;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 50%;
+        margin: 20px 0;
+        cursor: pointer;
+        i{
+          font-size: 20px
+        }
+      }
+      div:nth-child(1){
+        border: 1px solid #949fd8;
+        i{
+          color: #949fd8;
+        }
+      }
+      div:nth-child(2){
+        border: 1px solid #4e91d1;
+        i{
+          color: #4e91d1;
+        }
+      }
+      div:nth-child(3){
+        border: 1px solid #c40000;
+        i{
+          color: #c40000;
+        }
+      }
+      div:nth-child(4){
+        border: 1px solid #248a34;
+        i{
+          color: #248a34;
+        }
+      }
+      div:nth-child(5){
+        border: 1px solid #000;
+        i{
+          color: #000;
         }
       }
     }

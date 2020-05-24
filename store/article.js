@@ -47,7 +47,6 @@ export const actions = {
       data.map(item => {
         // item.articleInfor.thumbnail = item.articleInfor.thumbnail
         //   ? item.articleInfor.thumbnail.replace(/https?:\/\/(\w+\.)+\w+(:\d+)?/, "") : rootState.info.thumbnail;
-        // item.date = item.date.replace("T", " ");
         commit("updataArticleList", data);
         commit("setTotal", +headers["x-wp-total"]);
       });

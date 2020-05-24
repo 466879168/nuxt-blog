@@ -19,7 +19,7 @@
           </p>
           <div class="information clearfix">
             <span>
-              {{item.date}}
+              {{item.date|dateTFormat}}
             </span>
             <span>
               {{item.articleInfor.viewCount}}
@@ -62,6 +62,11 @@ export default {
       _embed:true
     })
     return result
+  },
+  head(){
+    return {
+      title:`${this.info.blogName} | ${this.info.blogDescription}`
+    }
   },
   data(){
     return {

@@ -32,6 +32,7 @@ export default {
      */
     'element-ui/lib/theme-chalk/index.css',
     '@assets/styles/global.less',
+    '@assets/styles/iconfont.css'
   ],
   styleResources:{
     less:[
@@ -54,6 +55,14 @@ export default {
       src:"@/plugins/loading",
       ssr:false
     },
+    {
+      src:"@/plugins/libs",
+      ssr:true
+    },
+    {
+      src:"@/assets/js/iconfont.js",
+      ssr:false
+    }
   ],
   buildModules: [
   ],

@@ -31,7 +31,7 @@
         </p>
         <div class="opeartion">
           <div class="information">
-            <span>{{ item.date }}</span>
+            <span>{{ item.date |dateTFormat}}</span>
             <span>{{ item.articleInfor.viewCount }}</span>
             <span>{{ item.articleInfor.commentCount }}</span>
             <!-- <span>{{ item.articleInfor.xmLike.very_good }}</span> -->
@@ -108,6 +108,9 @@ export default {
       .mark {
         color: @color-theme;
       }
+    }
+    .el-pagination{
+      text-align: center;
     }
   }
 </style>

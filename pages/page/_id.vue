@@ -27,7 +27,7 @@ import { mapState } from "vuex";
     name: "page",
     layout:'page',
     fetch({params,store}){
-      return stpre.dispatch("page/getPageDetail",params.id)
+      return store.dispatch("page/getPageDetail",params.id)
     },
     computed:{
       ...mapState(['info']),
