@@ -4,7 +4,33 @@ export const state = () => ({
   total: 0,
   currentPage: 1,
   viewCount: 0,
-  opinion: {}
+  opinion: {
+    very_good: {
+      src: require('~/assets/images/like_love.png'),
+      isShowLaoding: false,
+      text: 'Love'
+    },
+    good: {
+      src: require('~/assets/images/like_haha.png'),
+      isShowLaoding: false,
+      text: 'Haha'
+    },
+    commonly: {
+      src: require('~/assets/images/like_wow.png'),
+      isShowLaoding: false,
+      text: 'Wow'
+    },
+    bad: {
+      src: require('~/assets/images/like_sad.png'),
+      isShowLaoding: false,
+      text: 'Sad'
+    },
+    very_bad: {
+      src: require('~/assets/images/like_angry.png'),
+      isShowLaoding: false,
+      text: 'Angry'
+    }
+  }
 });
 
 export const mutations = {
@@ -23,14 +49,14 @@ export const mutations = {
   updateViewCount(state, num) {
     state.viewCount = num;
   },
-  updataOpinion(state, data) {
-    Object.keys(state.opinion).map(key => {
-      state.opinion[key].data = data[key];
-    });
-  },
-  updataOpinionLoading(state, { key, flag }) {
-    state.opinion[key].isShowLoading = flag;
-  }
+  // updataOpinion(state, data) {
+  //   Object.keys(state.opinion).map(key => {
+  //     state.opinion[key].data = data[key];
+  //   });
+  // },
+  // updataOpinionLoading(state, { key, flag }) {
+  //   state.opinion[key].isShowLoading = flag;
+  // }
 };
 
 export const actions = {
@@ -47,6 +73,7 @@ export const actions = {
       data.map(item => {
         // item.articleInfor.thumbnail = item.articleInfor.thumbnail
         //   ? item.articleInfor.thumbnail.replace(/https?:\/\/(\w+\.)+\w+(:\d+)?/, "") : rootState.info.thumbnail;
+        // item.date = item.date.replace("T", " ");
         commit("updataArticleList", data);
         commit("setTotal", +headers["x-wp-total"]);
       });
@@ -75,7 +102,7 @@ export const actions = {
         ? data.articleInfor.thumbnail.replace(domainRegexp, "$4")
         : rootState.info.thumbnail
       commit("setArticleDetail",data)
-      commit("updataOpinion",data.articleInfor.xmLike)
+      // commit("updataOpinion",data.articleInfor.xmLike)
       return Promise.resolve(data)
     } catch (e) {
       return Promise.reject(e);

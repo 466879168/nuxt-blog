@@ -25,56 +25,79 @@
 }
 
 .textOverflow {
-  overflow     : hidden;
-  white-space  : nowrap;
+  overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.h-100{
+.h-100 {
   height: 100%;
 }
 
-.vertical-middle{
+.vertical-middle {
   vertical-align: middle;
 }
 
-.layout{
+.layout {
   width: 1200px;
   margin: 0 auto;
 }
 
-body{
+body {
   background-color: #e9eaed;
   font-size: 14px;
 }
 
-.m-l-10{
+.m-l-10 {
   margin-left: 10px;
 }
-.m-r-10
-{
+.m-r-10 {
   margin-right: 10px;
 }
-.m-l-5{
+.m-l-5 {
   margin-left: 5px;
 }
 
-.block{
+.block {
   display: block;
 }
-.text-center{
+
+.text-center {
   text-align: center;
 }
-.text-left{
+
+.text-left {
   text-align: left;
 }
-.text-right{
+
+.text-right {
   text-align: right;
 }
 
-.clearfix{
+.inline-block {
+  display: inline-block;
+}
+
+.block {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+.o-hide {
+  overflow: hidden;
+}
+.c-theme {
+  color: @color-theme;
+}
+.c-red {
+  color: @color-red;
+}
+
+.clearfix {
   zoom: 1;
-  &::after{
+  &::after {
     content: ".";
     clear: both;
     display: block;
@@ -84,13 +107,13 @@ body{
   }
 }
 
-.article-list{
+.article-list {
   position: relative;
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
   border-bottom: 1px solid @color-main-background;
-  &::after{
+  &::after {
     content: "";
     position: absolute;
     bottom: -1px;
@@ -98,26 +121,26 @@ body{
     width: 0;
     height: 1px;
     background: @color-theme;
-    transition: .4s;
+    transition: 0.4s;
   }
-  &:hover{
-    &:after{
+  &:hover {
+    &:after {
       width: 100%;
     }
   }
-  .list-content{
+  .list-content {
     flex: 1;
     position: relative;
-    .title{
+    .title {
       margin-bottom: 10px;
       font-size: 18px;
-      a{
+      a {
         color: #333;
-        &:hover{
+        &:hover {
           color: @color-theme;
         }
       }
-      .classify{
+      .classify {
         position: relative;
         margin-right: 10px;
         padding: 3px 5px;
@@ -125,7 +148,7 @@ body{
         border-radius: 3px;
         font-size: @font-size-small;
         color: @color-white;
-        &:after{
+        &:after {
           content: "";
           position: absolute;
           right: -10px;
@@ -138,16 +161,16 @@ body{
         }
       }
     }
-    .summary{
+    .summary {
       line-height: 1.8;
-      display:-webkit-box;
-      -webkit-box-orient:vertical;
-      -webkit-line-clamp:2 ;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
       overflow: hidden;
     }
-    .information{
+    .information {
       padding-top: 10px;
-      .details-btn{
+      .details-btn {
         display: inline-block;
         padding: 5px 10px;
         float: right;
@@ -159,7 +182,3 @@ body{
     }
   }
 }
-
-
-
-
