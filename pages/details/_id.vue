@@ -174,6 +174,23 @@
       </div>
     </div>
     <!--作者信息-->
+    <!--评论列表-->
+    <div class="section comment">
+      <h2 class="commeng-title">
+        {{`共 ${detail.articleInfor.commentCount} 条评论关于 “${detail.title.rendered}”`}}
+      </h2>
+      <client-only>
+        <comments :comment-status="detail.comment_status"></comments>
+      </client-only>
+    </div>
+    <!--评论列表-->
+    <!--生成海报-->
+    <client-only placeholder="Loading...">
+      <create-poster v-model="isShowPoster" :content="posterContent">
+
+      </create-poster>
+    </client-only>
+    <!--生成海报-->
   </div>
 </template>
 
