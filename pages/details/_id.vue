@@ -2,55 +2,35 @@
   <div class="container">
     <!--文章内容开始-->
     <article class="section article">
-      <h2 class="title tc">
-        {{ detail.title.rendered }}
-      </h2>
+      <h2 class="title tc">{{ detail.title.rendered }}</h2>
       <div class="other-info tc">
-        <p class="">
-          <span class="author">
-            {{ detail.articleInfor.author }}
-          </span>
-          <time>
-            {{ detail.date }}
-          </time>
+        <p class>
+          <span class="author">{{ detail.articleInfor.author }}</span>
+          <time>{{ detail.date }}</time>
         </p>
         <p>
-          <span class="text m-l-10">
-            分类:
-          </span>
+          <span class="text m-l-10">分类:</span>
           <span
             class="classify"
             v-for="(item, index) in detail.articleInfor.classify"
             :key="index"
-          >
-            {{ item.name }}
-          </span>
+          >{{ item.name }}</span>
           <span class="m-l-5">
             <!--            {{ viewCount }}-->
           </span>
-          <span class="m-l-5">
-            {{ detail.articleInfor.commentCount }}
-          </span>
+          <span class="m-l-5">{{ detail.articleInfor.commentCount }}</span>
         </p>
       </div>
-      <div
-        class="content-details"
-        ref="articleContent"
-        v-html="detail.content.rendered"
-      ></div>
+      <div class="content-details" ref="articleContent" v-html="detail.content.rendered"></div>
     </article>
     <div class="section copyright">
       <p class="m-l-10">
-        <strong>
-          版权声明:
-        </strong>
+        <strong>版权声明:</strong>
         本站文章除特别声明外，均为本站原创。转载请注明出处，谢谢。
       </p>
       <p class="m-l-10">
-        <strong>
-          本文地址:
-        </strong>
-        <a :href="fullPath"> {{ fullPath }} </a>
+        <strong>本文地址:</strong>
+        <a :href="fullPath">{{ fullPath }}</a>
       </p>
     </div>
     <!--文章内容结束-->
@@ -64,11 +44,9 @@
           :key="index"
           @click="updateOpinion(index)"
         >
-          <span class="block total"> {{ item.deta }}人 </span>
-          <img :src="item.src" alt="" width="40" height="40" />
-          <span class="block">
-            {{ item.text }}
-          </span>
+          <span class="block total tc">{{ item.deta }}人</span>
+          <img :src="item.src" alt width="40" height="40" />
+          <span class="block">{{ item.text }}</span>
         </li>
       </ul>
       <!--点赞结束-->
@@ -76,47 +54,47 @@
       <div class="share text-center">
         <span class="text">分享到：</span>
         <a
+          class="qq"
           :href="
             `https://connect.qq.com/widget/shareqq/index.html?url=${info.domain}/details/${$route.params.id}&title=${detail.title.rendered}&summary=`
           "
           target="_blank"
         >
+          <i class="iconfont icon-qq"></i>
         </a>
         <a
+          class="qqkongjian"
           :href="
             `https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=${info.domain}/details/${$route.params.id}&title=${detail.title.rendered}&summary=${detail.articleInfor.summary}`
           "
           target="_blank"
         >
+          <i class="iconfont icon-QQkongjian"></i>
         </a>
         <a
+          class="weibo"
           :href="
             `https://service.weibo.com/share/share.php?url=${info.domain}/details/${$route.params.id}%230-tsina-1-21107-397232819ff9a47a7b7e80a40613cfe1&title=${detail.title.rendered}&appkey=1343713053&searchPic=true#_loginLayer_1473259217614`
           "
           target="_blank"
         >
+          <i class="iconfont icon-tubiaozhizuo-"></i>
         </a>
-        <a
-          href="javascript:;"
-          class="create-poster-btn"
-          @click="isShowPoster = true"
-        >
+        <a href="javascript:;" class="create-poster-btn" @click="isShowPoster = true">
+          <i class="iconfont icon-ico"></i>
         </a>
       </div>
       <!--分享结束-->
       <!--标签开始-->
       <div class="tag-wrap tc">
-        <span v-for="(item, index) in detail.articleInfor.tags" :key="index">
-          {{ item.name }}
-        </span>
+        <i class="iconfont icon-tag"></i>
+        <span v-for="(item, index) in detail.articleInfor.tags" :key="index">{{ item.name }}</span>
       </div>
       <!--标签结束-->
       <!--上一篇下一篇-->
       <div class="relative-link-wrap">
         <div class="prev">
-          <p v-if="detail.articleInfor.prevLink === ''">
-            已经是第一篇文章了！
-          </p>
+          <p v-if="detail.articleInfor.prevLink === ''">已经是第一篇文章了！</p>
           <p v-else>
             上一篇：
             <nuxt-link
@@ -124,15 +102,11 @@
                 name: 'details-id',
                 params: { id: detail.articleInfor.prevLink.ID }
               }"
-            >
-              {{ detail.articleInfor.prevLink.post_title }}
-            </nuxt-link>
+            >{{ detail.articleInfor.prevLink.post_title }}</nuxt-link>
           </p>
         </div>
         <div class="nuxt">
-          <p v-if="detail.articleInfor.nextLink === ''">
-            已经是最后一篇文章了！
-          </p>
+          <p v-if="detail.articleInfor.nextLink === ''">已经是最后一篇文章了！</p>
           <p v-else>
             下一篇：
             <nuxt-link
@@ -140,9 +114,7 @@
                 name: 'details-id',
                 params: { id: detail.articleInfor.nextLink.ID }
               }"
-            >
-              {{ detail.articleInfor.nextLink.post_title }}
-            </nuxt-link>
+            >{{ detail.articleInfor.nextLink.post_title }}</nuxt-link>
           </p>
         </div>
       </div>
@@ -150,51 +122,86 @@
     </div>
     <!--作者信息-->
     <div class="section author-introduct">
-      <img :src="detail.articleInfor.other.authorPic" alt="" class="phone-hide" width="100">
+      <el-image
+        style="width: 100px; height: 100px"
+        :src="detail.articleInfor.other.authorPic"
+        fit="cover"
+      ></el-image>
       <div class="right">
         <div class="header">
-          <img :src="detail.articleInfor.other.authorPic" alt="" class="phone-show" width="25">
           <p class="inline-block name">
             作者简介：
-            <span class="">{{ detail.articleInfor.author }}</span>
+            <span class="autor">
+              <i class="iconfont icon-wo"></i>
+              {{ detail.articleInfor.author }}
+            </span>
           </p>
           <div v-if="info.isOpenReward" class="reward" @click="isShowReward = true">
-            <span>打赏</span> 
+            <span>
+              <i class="iconfont icon-dashang"></i>
+              打赏
+            </span>
           </div>
-          <reward v-model="isShowReward" :content="rewardContent"></reward>
+          <reward :isShow="isShowReward" :content="rewardContent" @closeReward="closeReward"></reward>
         </div>
-        <p class="author-summary">
-          浮生一世
-        </p>
+        <p class="author-summary">浮生一世,总有偿还之时。</p>
         <ul class="author-link">
           <li class="list">
-            
+            <nuxt-link :to="{ name: 'index' }">
+              <i class="iconfont icon-shouye"></i>
+            </nuxt-link>
+          </li>
+          <li class="list github" @click="goToGithub">
+            <span >
+              <i class="iconfont icon-github1"></i>
+            </span>
+          </li>
+          <li class="list">
+            <nuxt-link to="https://github.com/466879168">
+              <i class="iconfont icon-qq"></i>
+            </nuxt-link>
+          </li>
+          <li class="list">
+            <nuxt-link to="https://github.com/466879168">
+              <i class="iconfont icon-weixin"></i>
+            </nuxt-link>
+          </li>
+          <li class="list" @click="goToWeibo">
+            <span >
+              <i class="iconfont icon-tubiaozhizuo-"></i>
+            </span>
+          </li>
+          <li class="list" @click="goToEmail">
+            <span >
+              <i class="iconfont icon-youxiang"></i>
+            </span>
           </li>
         </ul>
       </div>
     </div>
     <!--作者信息-->
     <!--评论列表-->
-    <div class="section comment">
+    <!-- <div class="section comment">
       <h2 class="commeng-title">
         {{`共 ${detail.articleInfor.commentCount} 条评论关于 “${detail.title.rendered}”`}}
       </h2>
       <client-only>
         <comments :comment-status="detail.comment_status"></comments>
       </client-only>
-    </div>
+    </div>-->
     <!--评论列表-->
     <!--生成海报-->
-    <client-only placeholder="Loading...">
-      <create-poster v-model="isShowPoster" :content="posterContent">
-
-      </create-poster>
-    </client-only>
+    <!-- <client-only placeholder="Loading...">
+      <createposter :value="isShowPoster" :content="posterContent" @input="closecreateposter()">
+      </createposter>
+    </client-only>-->
     <!--生成海报-->
   </div>
 </template>
 
 <script>
+import reward from "~/components/reward"
+import createposter from "~/components/createposter";
 import { mapState, mapActions } from "vuex";
 export default {
   name: "articleDetail",
@@ -202,14 +209,29 @@ export default {
     // store.dispatch("article/updateArticleViewCount",{id:params.id})
     return store.dispatch("article/getArticleDetail", params.id);
   },
-  components: {},
+  components: { createposter,reward },
   data() {
     return {
-      fullPath: ""
+      fullPath: "",
+      isShowPoster: false,
+      posterContent: {},
+      isShowReward: false,
+      rewardContent:{},
     };
   },
   created() {
     this.fullPath = `${this.info.domain.replace(/\/$/, "")}${this.$route.path}`;
+    // 合并作者数据
+    for (let key in this.authorOtherInfo) {
+      this.authorOtherInfo[key].url = other[key]
+    }
+    // 打赏数据
+    this.rewardContent = {
+      thumbnail: this.detail.articleInfor.other.authorPic,
+      text: this.info.rewardText,
+      alipay: this.info.alipay,
+      wechatpay: this.info.wechatpay
+    }
   },
   mounted() {
     //下面这行代码解决prismjs不能异步加载必须刷新一下才显示的问题
@@ -217,13 +239,42 @@ export default {
       document
         .querySelectorAll("pre code")
         .forEach(block => Prism.highlightElement(block));
+    // 海报内容
+    this.posterContent = {
+      imgUrl: this.detail.articleInfor.thumbnail,
+      title: this.detail.title.rendered,
+      summary: this.detail.articleInfor.summary,
+      time: this.detail.date.replace(/\s.*/, " "),
+      qrcodeLogo: this.detail.articleInfor.other.authorPic.replace(
+        /(https?:\/\/([a-z\d-]\.?)+(:\d+)?)?(\/.*)/gi,
+        `${this.info.domain}$4`
+      ),
+      qrcodeText: this.info.blogName,
+      id: this.$route.params.id
+    };
   },
   computed: {
     ...mapState(["info"]),
     ...mapState("article", ["detail", "viewCount", "opinion"])
   },
   methods: {
-    updateOpinion() {}
+    updateOpinion() {},
+    closecreateposter(flag) {
+      this.isShowPoster = flag;
+    },
+    closeReward(flag){
+      this.isShowReward=flag
+    },
+    goToGithub(){
+      window.open("https://github.com/466879168")
+      // window.location.href="https://github.com/466879168"
+    },
+    goToWeibo(){
+      window.open("https://weibo.com/u/5511878287")
+    },
+    goToEmail(){
+      window.open("mailto:466879168@qq.com")
+    }
   }
 };
 </script>
@@ -342,6 +393,135 @@ export default {
 .relative-link-wrap {
   .nuxt {
     margin-top: 10px;
+  }
+}
+.share {
+  margin-bottom: @container-margin;
+  a {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 5px;
+    i {
+      position: relative;
+      font-size: 20px;
+      color: #fff;
+    }
+  }
+  .qq {
+    background: #68a5e1;
+    i {
+      top: 3px;
+      left: 0px;
+    }
+  }
+  .qqkongjian {
+    background: #f5be3f;
+    i {
+      top: 3px;
+      left: 0.5px;
+    }
+  }
+  .weibo {
+    background: #f56467;
+    i {
+      top: 2px;
+      left: 1px;
+    }
+  }
+  .create-poster-btn {
+    background: #55d081;
+    i {
+      top: 4px;
+      left: 1px;
+    }
+  }
+}
+.tag-wrap {
+  margin-bottom: @container-margin;
+  i {
+    font-size: 20px;
+    position: relative;
+    top: 3px;
+  }
+}
+.relative-link-wrap {
+  a {
+    color: @color-theme;
+  }
+}
+// 作者信息
+.author-introduct {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .right {
+    flex: 1;
+    margin-left: 10px;
+  }
+
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid @color-border;
+    .name{
+      .autor{
+        i{
+
+        }
+      }
+    }
+    .reward{
+      span{
+        font-size: 16px;
+        i{
+          font-size: 20px;
+          position: relative;
+          top: 1px;
+        }
+      }
+    }
+  }
+
+  .reward {
+    margin-left: 10px;
+    cursor: pointer;
+
+    .iconfont-colour {
+      vertical-align: bottom;
+    }
+  }
+
+  .name {
+    font-size: @font-size-large;
+  }
+
+  img {
+    margin-right: 10px;
+    border-radius: @border-radius;
+  }
+}
+//个人小图标
+.author-link{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  .list{
+    cursor: pointer;
+    box-sizing: border-box;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: @border-radius;
+    background: @color-sub-background;
+    .iconfont{
+      font-size: 20px;
+    }
   }
 }
 </style>

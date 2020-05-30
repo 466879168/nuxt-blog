@@ -38,5 +38,35 @@ export const actions={
       menu:menu.data
     }
     commit("updateGlobalInfo",data)
+  },
+  // 上传图片
+  async uploadImage ({commit,rootState},{requestData, config = {}}){
+    try {
+      let { data } = await this.$axios.$post(`${process.env.baseUrl}/wp-content/themes/${rootState.info.themeDir}/dylan_upload.php`, requestData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          progress: false
+        },
+        ...config
+      })
+      return Promise.resolve(data)
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+
+  // 删除图片
+  async deleteImage ({ commit, rootState }, requestData) {
+    try {
+      let { data } = await this.$axios.$post(`${process.env.baseUrl}/wp-content/themes/${rootState.info.themeDir}/dylan_upload.php`, requestData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          progress: false
+        }
+      })
+      return Promise.resolve(data)
+    } catch (error) {
+      return Promise.reject(error)
+    }
   }
 }
