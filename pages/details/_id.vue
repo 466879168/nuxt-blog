@@ -156,15 +156,15 @@
               <i class="iconfont icon-github1"></i>
             </span>
           </li>
-          <li class="list">
-            <nuxt-link to="https://github.com/466879168">
+          <li class="list" @click="goToqq">
+            <span>
               <i class="iconfont icon-qq"></i>
-            </nuxt-link>
+            </span>
           </li>
-          <li class="list">
-            <nuxt-link to="https://github.com/466879168">
+          <li class="list" @click="goToWeixin">
+            <span>
               <i class="iconfont icon-weixin"></i>
-            </nuxt-link>
+            </span>
           </li>
           <li class="list" @click="goToWeibo">
             <span >
@@ -181,25 +181,26 @@
     </div>
     <!--作者信息-->
     <!--评论列表-->
-    <!-- <div class="section comment">
-      <h2 class="commeng-title">
+    <div class="section comment">
+      <h2 class="commeng-title tc">
         {{`共 ${detail.articleInfor.commentCount} 条评论关于 “${detail.title.rendered}”`}}
       </h2>
       <client-only>
-        <comments :comment-status="detail.comment_status"></comments>
+        <comments :status="detail.comment_status"></comments>
       </client-only>
-    </div>-->
+    </div>
     <!--评论列表-->
     <!--生成海报-->
-    <!-- <client-only placeholder="Loading...">
+    <client-only placeholder="Loading...">
       <createposter :value="isShowPoster" :content="posterContent" @input="closecreateposter()">
       </createposter>
-    </client-only>-->
+    </client-only>
     <!--生成海报-->
   </div>
 </template>
 
 <script>
+import comments from "~/components/comment"
 import reward from "~/components/reward"
 import createposter from "~/components/createposter";
 import { mapState, mapActions } from "vuex";
@@ -209,7 +210,7 @@ export default {
     // store.dispatch("article/updateArticleViewCount",{id:params.id})
     return store.dispatch("article/getArticleDetail", params.id);
   },
-  components: { createposter,reward },
+  components: { createposter,reward,comments },
   data() {
     return {
       fullPath: "",
@@ -274,6 +275,30 @@ export default {
     },
     goToEmail(){
       window.open("mailto:466879168@qq.com")
+    },
+    goToWeixin(){
+      this.$message({
+        title: `微信号：moxiyansdyk`,
+        showClose: true,
+        showImg: true,
+        center: true,
+        wrapCenter: true,
+        width: 300,
+        imgUrl: "http://image-static.codingdylan.com/img/20200531124303.png",
+        duration: 0
+      })
+    },
+    goToqq(){
+      this.$message({
+        title: `QQ号：466879168`,
+        showClose: true,
+        showImg: true,
+        center: true,
+        wrapCenter: true,
+        width: 300,
+        imgUrl: "http://image-static.codingdylan.com/img/20200531124259.png",
+        duration: 0
+      })
     }
   }
 };
@@ -523,5 +548,12 @@ export default {
       font-size: 20px;
     }
   }
+}
+.comment-title{
+  margin-bottom: 10px;
+  padding: 10px 0;
+  border-radius: @border-radius;
+  background: @color-sub-background;
+  font-size: @font-size-large;
 }
 </style>

@@ -13,9 +13,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/my-ico.ico' },
-      { hid: 'prism', rel: 'stylesheet', href: '/css/prism.css'}
+      { hid: 'prism', rel: 'stylesheet', href: '/css/prism.css' }
     ],
-    script:[
+    script: [
       { src: '/js/prism.js' },
     ]
   },
@@ -34,8 +34,8 @@ export default {
     '@assets/styles/global.less',
     '@assets/styles/iconfont.css'
   ],
-  styleResources:{
-    less:[
+  styleResources: {
+    less: [
       './assets/styles/variable.less'
     ]
   },
@@ -48,21 +48,25 @@ export default {
       ssr: true
     },
     {
-      src:"@/plugins/element-ui",
-      ssr:true
+      src: "@/plugins/element-ui",
+      ssr: true
     },
     {
-      src:"@/plugins/loading",
-      ssr:false
+      src: "@/plugins/loading",
+      ssr: false
     },
     {
-      src:"@/plugins/libs",
-      ssr:true
+      src: "@/plugins/libs",
+      ssr: true
     },
     {
-      src:"@/assets/js/iconfont.js",
-      ssr:false
-    }
+      src: "@/assets/js/iconfont.js",
+      ssr: false
+    },
+    { 
+      src: '~/plugins/message', 
+      ssr: false
+    },
   ],
   buildModules: [
   ],
@@ -72,9 +76,9 @@ export default {
     '@nuxtjs/proxy'
   ],
   axios: {
-    proxy:true
+    proxy: true
   },
-  proxy:{
+  proxy: {
     '/api': {
       target: 'http://106.54.232.85',
       // target: 'http://localhost:8888',
@@ -98,7 +102,7 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
     }
   }
 }
