@@ -34,8 +34,10 @@
           </el-form-item>
           <el-form-item  prop="code" class="code">
             <el-input v-model="ruleForm.code" placeholder="验证码"></el-input>
+            <canvas width="240" height="60" class="canvas-img-code" @click="randomCode">
+            </canvas>
           </el-form-item>
-          <el-form-item>
+          <el-form-item class="publishedComment">
             <el-button type="primary" @click="submitForm('ruleForm')">发表评论</el-button>
           </el-form-item>
         </el-form>
@@ -96,8 +98,8 @@
       </li>
     </ul>
     <!--评论列表结束-->
-    <div class="more-btn" @click="bClick && _getMoreList()">
-      <span><i v-show="bMoreList" class="iconfont icon-loading"></i>{{ sMoreBtnText }}</span>
+    <div class="more-btn tc" @click="bClick && getMoreList()">
+      <span><i v-show="bMoreList" class="icon-loading"></i>{{ sMoreBtnText }}</span>
     </div>
   </div>
 </template>
@@ -105,8 +107,8 @@
 <script>
 import {mapState,mapActions} from "vuex"
 export default {
-  name: "comment",
-  components,
+  name: "comments",
+  components:{},
   props: {
     status: {
       type: String,
@@ -130,10 +132,50 @@ export default {
             { required: true, message: '昵称不能为空！', trigger: 'blur' }
         ],
         email:[
-            { required: true, message: '邮箱不能为空！', trigger: 'blur' }
+            {
+              required: true,
+              validator: (rule, value, callback) => {
+                if (value) {
+                  if (!/^(\w+|\w+(\.\w+))+@(\w+\.)+\w+$/.test(value)){
+                    return callback(new Error('邮箱格式错误！'))
+                  }else{
+                    callback();
+                  }
+                } else {
+                  return callback(new Error('邮箱不能为空！'))
+                }
+              },
+              trigger: 'blur'
+            }
         ],
         code:[
-            { required: true, message: '请输入验证码', trigger: 'blur' }
+            { required: true,
+              validator: (rule, value, callback) => {
+                if (value) {
+                  let randomCode=this.random
+                  let result=0
+                  switch (randomCode.operator) {
+                    case '+':
+                      result = randomCode.nRandom1 + randomCode.nRandom2
+                      break
+                    case '-':
+                      result = randomCode.nRandom1 - randomCode.nRandom2
+                      break
+                    case '*':
+                      result = randomCode.nRandom1 * randomCode.nRandom2
+                      break
+                  }
+                  if (this.ruleForm.code!=result){
+                    return callback(new Error('是不是看错了！'))
+                  }else{
+                    callback();
+                  }
+                } else {
+                  return callback(new Error('请输入验证码！'))
+                }
+              },
+              trigger: 'blur'
+            }
         ],
       },
       currentCommentPage: 1,
@@ -142,7 +184,8 @@ export default {
       bSubmit: true,
       showChart: false,
       sMoreBtnText: '评论加载中',
-      submitText: '提交评论'
+      submitText: '提交评论',
+      random: {},
     };
   },
   computed:{
@@ -151,16 +194,128 @@ export default {
       isOpenCommentUpload: state => state.info.isOpenCommentUpload,
       templeteUrl: state => state.info.templeteUrl
     }),
-    ...mapState('comment', ['commentList', 'totalPage'])
+    ...mapState('comment', ['commentList', 'total'])
+  },
+  mounted() {
   },
   methods: {
+    ...mapActions('comment',['getCommentList', 'updateComment']),
     showChartlet() {},
     getExpression() {
       console.log(111);
+    },
+    getMoreList(){
+
+    },
+    //验证码
+    randomCode(){
+      let canvas=document.querySelector('.canvas-img-code')
+      let ctx=canvas.getContext('2d')
+      let nRandom1=Math.floor(Math.random()*10+5)
+      let nRandom2=Math.floor(Math.random()*5)
+      let nRandomResult=Math.floor(Math.random()*3)
+      let aOperator=['+','-', '*']
+      ctx.clearRect(0,0,canvas.width,canvas.height)
+      ctx.font='40px Microsoft Yahei'
+      ctx.fillStyle='#333'
+      ctx.textAlign='center'
+      ctx.fillText(`${nRandom1} ${aOperator[nRandomResult]} ${nRandom2} = ?`, 120, 50)
+      this.random = {
+        nRandom1,
+        nRandom2,
+        operator: aOperator[nRandomResult]
+      }
+    },
+    //发表评论
+    submitForm(formName){
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.submitFormFn()
+          this.$refs[formName].resetFields();
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+    async submitFormFn(){
+      localStorage.setItem('authorInfo',JSON.stringify({
+        author:this.ruleForm.name,
+        email:this.ruleForm.email,
+        url:this.ruleForm.website
+      }))
+      try {
+        let params={}
+        let data=await this.updateComment({
+          author_name: this.ruleForm.name,
+          author_email: this.ruleForm.email,
+          author_url: this.ruleForm.website,
+          content: this.ruleForm.content.replace(/(\[[a-zA-Z\d]+\])/g, ' $1 '),
+          post: this.$route.params.id,
+          author_user_agent: navigator.userAgent
+        })
+      }catch (e) {}
     }
   }
 };
 </script>
 
 <style scoped lang="less">
+.comments-wrap{
+  padding: 10px 0;
+  .comment-closed{
+    padding: 10px 0 30px;
+  }
+  .comment-form-content{
+    .name,.email,.website,.code{
+      width: 430px;
+      display: inline-block;
+      height: 50px;
+      /deep/ .el-input__inner{
+        height: 50px;
+      }
+    }
+    .name,.website{
+      margin-right: 15px;
+    }
+    .code{
+      position: relative;
+      .canvas-img-code{
+        position: absolute;
+        bottom:5px;
+        right: 5px;
+        z-index: 5;
+        width: 120px;
+        height: 30px;
+      }
+    }
+    .publishedComment{
+      text-align: center;
+    }
+  }
+  .more-btn{
+    margin-top: 30px;
+    color: @color-white;
+    span{
+      display: inline-block;
+      padding: 10px 30px;
+      border-radius: @border-radius;
+      background: @color-theme;
+      cursor: pointer;
+    }
+  }
+  .comment-other{
+    position: relative;
+    margin: 10px 0;
+    .list-wrap{
+      display: flex;
+      .list{
+        margin-right: 5px;
+        cursor: pointer;
+      }
+    }
+
+  }
+
+}
 </style>
