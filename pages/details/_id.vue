@@ -24,7 +24,7 @@
       <div class="content-details" ref="articleContent" v-html="detail.content.rendered"></div>
     </article>
     <div class="section copyright">
-      <p class="m-l-10">
+      <p class="m-l-10" style="margin-bottom: 10px;">
         <strong>版权声明:</strong>
         本站文章除特别声明外，均为本站原创。转载请注明出处，谢谢。
       </p>

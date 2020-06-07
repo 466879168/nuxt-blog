@@ -33,13 +33,14 @@
             <span>{{ item.articleInfor.viewCount }}</span>
             <span>{{ item.articleInfor.commentCount }}</span>
             <!-- <span>{{ item.articleInfor.xmLike.very_good }}</span> -->
+            <nuxt-link
+              class="details-btn tc"
+              :to="{ name: 'details-id', params: { id: item.id } }"
+            >
+              阅读详情
+            </nuxt-link>
           </div>
-          <nuxt-link
-            class="details-btn tc"
-            :to="{ name: 'details-id', params: { id: item.id } }"
-          >
-            阅读详情
-          </nuxt-link>
+
         </div>
       </div>
     </article>
@@ -135,7 +136,7 @@ export default {
         margin-top: 10px;
       }
       .details-btn{
-        display:block;
+        display:inline-block;
         margin-top: 10px;
         padding: 10px 0;
       }

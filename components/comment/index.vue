@@ -4,8 +4,7 @@
     <div v-else-if="status === 'open'" class="commeng-form">
       <h3 class="comment-title">发表评论</h3>
       <p class="comment-sub-title">
-        电子邮件地址不会被公开。 必填项已用
-        <i class="c-red">*</i>标注
+        电子邮件地址不会被公开。
       </p>
       <div class="comment-other">
         <ul class="list-wrap">
@@ -45,7 +44,7 @@
     </div>
     <!--评论列表-->
     <ul class="comment-list-wrap">
-      <li class="comment-list" v-for="(item) in commentList" :key="item.key">
+      <li class="comment-list" v-for="(item,index) in commentList" :key="item.key">
         <template>
           <p
             v-if="info.isOpenTextThumbnail"
@@ -64,13 +63,6 @@
         <div class="list-header">
           <a :name="`comment-${item.id}`"></a>
           <a :href="item.author_url" target="_blank" class="author">{{ item.author_name }}</a>
-          <!-- 评论者等级 -->
-          <span
-            class="icon-vip icon-level"
-            :class="[item.userAgentInfo.vipStyle.style, item.userAgentInfo.vipStyle.level]"
-            :title="item.userAgentInfo.vipStyle.title">
-          </span>
-          <img v-if="item.userAgentInfo.vipStyle.title === '博主'" src="../../assets/images/icon-admin.png" width="20" class="icon-admin">
           <p class="inline-block system-wrap">
             <!-- 浏览器logo -->
             <span :class="['browser-info', item.userAgent.browserEnName && item.userAgent.browserEnName.toLowerCase()]">
@@ -81,19 +73,18 @@
           </p>
           <span v-if="item.status === 'hold'">您的评论正在审核中...</span>
         </div>
-        <div class="list-content">
-          {{item.content.rendered}}
+        <div class="list-content" v-html="item.content.rendered">
         </div>
         <div class="list-footer">
           <time>{{ item.date.replace('T', ' ') }}</time>
-          <div class="opinion">
-            <span class="opinion-btn" @click="_updateCommentOpinion(item.id, 'good', index)">
-              <i class="el-icon-check"></i> {{ item.meta.opinion.good }}
-            </span>
-            <span class="opinion-btn" @click="_updateCommentOpinion(item.id, 'bad', index)">
-              <i class="el-icon-close"></i> {{ item.meta.opinion.bad }}
-            </span>
-          </div>
+<!--          <div class="opinion">-->
+<!--            <span class="opinion-btn" @click="commentOpinion(item.id, 'good', index)">-->
+<!--              支持 {{ item.meta.opinion.good }}-->
+<!--            </span>-->
+<!--            <span class="opinion-btn" @click="commentOpinion(item.id, 'bad', index)">-->
+<!--              反对 {{ item.meta.opinion.bad }}-->
+<!--            </span>-->
+<!--          </div>-->
         </div>
       </li>
     </ul>
@@ -196,16 +187,68 @@ export default {
     }),
     ...mapState('comment', ['commentList', 'total'])
   },
+  created() {
+    this.getList()
+  },
+  beforeDestroy() {
+    this.$store.commit('comment/resetComment')
+  },
   mounted() {
+    console.log(this.commentList)
   },
   methods: {
-    ...mapActions('comment',['getCommentList', 'updateComment']),
+    ...mapActions('comment',['getCommentList', 'updateComment','updateCommentOpinion']),
+    //评论列表
+    async getList(){
+      console.log(localStorage.getItem('authorInfo'))
+      if(localStorage.getItem('authorInfo')){
+        const authorInfo=JSON.parse(localStorage.getItem('authorInfo'))
+        this.ruleForm.name=authorInfo.author
+        this.ruleForm.email=authorInfo.email
+        this.ruleForm.website=authorInfo.url
+      }
+      //获取评论列表
+      await this.getCommentList({
+        post:this.$route.params.id,
+        page:this.currentCommentPage
+      })
+      this.bMoreList=false
+      this.sMoreBtnText="下一页"
+      if(this.currentCommentPage === this.total){
+        this.sMoreBtnText="最后一页！"
+        this.bClick=false
+      }
+      if (this.total === 0){
+        this.sMoreBtnText="暂无数据！"
+        this.bClick=false
+      }
+      this.status === 'open' && this.$nextTick(()=>this.randomCode())
+    },
+    //下一页
+    async getMoreList(){
+      this.bMoreList = true
+      this.bClick = false
+      this.currentCommentPage++
+      this.sMoreBtnText = '加载中'
+      await this.getCommentList({
+        post: this.$route.params.id,
+        page: this.currentCommentPage
+      })
+      this.bMoreList = false
+      this.bClick = true
+      this.sMoreBtnText = '下一页'
+      if (this.currentCommentPage === this.totalPage) {
+        this.sMoreBtnText = '最后一页！'
+        this.bClick = false
+        return
+      }
+      this.bMoreList = false
+      this.bClick = true
+      this.sMoreBtnText = '下一页'
+    },
     showChartlet() {},
     getExpression() {
       console.log(111);
-    },
-    getMoreList(){
-
     },
     //验证码
     randomCode(){
@@ -254,7 +297,24 @@ export default {
           post: this.$route.params.id,
           author_user_agent: navigator.userAgent
         })
+
       }catch (e) {}
+    },
+    async commentOpinion (id, type, index) {
+      if (localStorage.getItem(`commentOpinion_${id}`)) {
+        this.$message({ title: '已经发表过了哦！', type: 'warning' })
+        return
+      }
+      try {
+        let data = await this.updateCommentOpinion({
+          id,
+          type
+        })
+        this.$store.commit('comment/updataCommentOpinion', { index, data })
+        localStorage.setItem(`commentOpinion_${id}`, true)
+      } catch (error) {
+        this.$message({ title: '哦豁，失败了！', type: 'error' })
+      }
     }
   }
 };
@@ -298,7 +358,7 @@ export default {
     color: @color-white;
     span{
       display: inline-block;
-      padding: 10px 30px;
+      padding: 5px 20px;
       border-radius: @border-radius;
       background: @color-theme;
       cursor: pointer;

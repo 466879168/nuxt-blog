@@ -2988,6 +2988,11 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
+dylan-browser-info@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/dylan-browser-info/download/dylan-browser-info-1.0.0.tgz#6a65401408992c0ddcb0ed4d01e09a47de30db35"
+  integrity sha1-amVAFAiZLA3csO1NAeCaR94w2zU=
+
 ecc-jsbn@~0.1.1:
   version "0.1.2"
   resolved "https://registry.npm.taobao.org/ecc-jsbn/download/ecc-jsbn-0.1.2.tgz#3a83a904e54353287874c564b7549386849a98c9"

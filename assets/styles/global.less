@@ -192,6 +192,171 @@ body {
 }
 
 
-.comment-list-wrap{
-  //测试
+.comment-list {
+  box-sizing: border-box;
+  position: relative;
+  width: 95%;
+  margin: 0 0 20px 5%;
+  padding: 10px 10px 10px 50px;
+  border-radius: @border-radius;
+  background: @color-sub-background;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .list-gravatar {
+    position: absolute;
+    top: 5px;
+    left: -30px;
+    border-radius: @border-radius;
+  }
+
+  .list-gravatar-text {
+    position: absolute;
+    top: 5px;
+    left: -30px;
+    width: 60px;
+    height: 60px;
+    border-radius: @border-radius;
+    font-size: 30px;
+    text-align: center;
+    line-height: 60px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .list-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .author {
+    margin-right: 3px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  // 浏览器信息
+  .browser-info {
+    display: inline-block;
+    vertical-align: text-bottom;
+    margin-right: 5px;
+    padding: 2px 4px;
+    background: #06aaff;
+    border-radius: 3px;
+    color: @color-white;
+
+    &.chrome {
+      background: linear-gradient(to right, #5087ec, #d95040, #f2bd42);
+    }
+
+    &.safari {
+      background: linear-gradient(to right, #2670cb, #47a2c5);
+    }
+
+    &.firefox {
+      background: linear-gradient(to right, #dd3a45, #fcea67);
+    }
+
+    &[class*="qq"] {
+      background: linear-gradient(to right, #3072d1, #4ea8f3);
+    }
+
+    &.edge {
+      background: #4378b5;
+    }
+
+    &.internet-explorer {
+      background: linear-gradient(to right, #fadc4f, #8ae2fb, #57a0d4);
+    }
+
+    &.micromessenger {
+      background: #94d258;
+    }
+
+    &.ucbrowser {
+      background: linear-gradient(to right, #ed5e31, #f8cd46);
+    }
+
+    &.opera {
+      background: #eb3b3a;
+    }
+  }
+  // 系统信息
+  .system-info {
+    display: inline-block;
+    vertical-align: text-bottom;
+    margin-right: 5px;
+    padding: 2px 4px;
+    background: #fc5c7d;
+    background: linear-gradient(to right, #fc5c7d, #6a82fb);
+    border-radius: 3px;
+    color: @color-white;
+  }
+
+  .list-content {
+    margin: 10px 0;
+
+    /deep/ a {
+      color: @color-theme;
+    }
+
+    /deep/ img {
+      max-width: 40%;
+      height: initial !important;
+      max-height: initial !important;
+      vertical-align: bottom;
+    }
+  }
+  // 评论者等级
+  .icon-vip {
+    display: inline-block;
+    margin-right: 5px;
+    // 博主
+    &.icon-admin {
+      width: 20px;
+      height: 20px;
+      background-position: -172px -70px;
+    }
+
+    &.vip-style-1 {
+      width: 20px;
+      height: 18px;
+    }
+  }
+  // 博主
+  .icon-admin {
+    margin-right: 5px;
+  }
+
+  span,
+  time {
+    font-size: @font-size-small;
+    color: #a8b6c0;
+  }
+
+  .list-btn-wrap {
+    a {
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: @border-radius;
+      background: @color-white;
+    }
+  }
+
+  .list-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .opinion-btn {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .iconfont {
+      vertical-align: baseline;
+    }
+  }
 }

@@ -148,7 +148,6 @@ export default {
     })
   },
   mounted(){
-    console.log(this.sidebar.newComment);
   },
   methods:{
     goToHome(){
