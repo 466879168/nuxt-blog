@@ -1,37 +1,25 @@
 <template>
   <div class="comment-wrap">
-    <!--公告-->
     <div class="notice sidebar-list">
+      <div class="title">
+        <p>
+          <i class="iconfont icon-announce"></i>
+          公告
+        </p>
+      </div>
       <div class="header">
         孟洋的博客小站
       </div>
       <div class="content">
         记录日常工作遇到的问题和知识。
       </div>
-      <div class="smallicon" @click="goToHome">
-        <div>
-          <i class="iconfont icon-shouye"></i>
-        </div>
-        <div>
-          <i class="iconfont icon-qq"></i>
-        </div>
-        <div>
-          <i class="iconfont icon-weixin"></i>
-        </div>
-        <div>
-          <i class="iconfont icon-tubiaozhizuo-"></i>
-        </div>
-        <div>
-          <i class="iconfont icon-github"></i>
-        </div>
-      </div>
-
     </div>
     <!--公告-->
     <!--评论-->
     <div class="comment sidebar-list">
       <div class="title">
         <p>
+          <i class="iconfont icon-pingjia"></i>
           最新评论
         </p>
       </div>
@@ -86,7 +74,10 @@
     <!--站点统计-->
     <div class="count sidebar-list">
       <div class="title">
-        <p>站点统计</p>
+        <p>
+          <i class="iconfont icon-tongji"></i>
+          站点统计
+        </p>
       </div>
       <ul class="content clearfix">
         <li>标签：{{ sidebar.getAllCountTag }}个</li>
@@ -104,6 +95,7 @@
     <div class="cloud sidebar-list">
       <div class="title">
         <p>
+          <i class="iconfont icon-tag"></i>
           标签云
         </p>
         <router-link :to="{name:'tags'}">更多</router-link>
@@ -181,7 +173,7 @@ export default {
           position: absolute;
           bottom: -6px;
           left: 0;
-          width: 70px;
+          width: 100px;
           height: 2px;
           background: @color-theme;
         }
@@ -205,7 +197,7 @@ export default {
     .title {
       a {
         position: relative;
-        left: 175px;
+        left: 160px;
       }
     }
     .content {
@@ -295,6 +287,14 @@ export default {
     }
   }
   .comment {
+    .title{
+      p{
+        i{
+          font-size: 14px;
+          margin-right: 2px;
+        }
+      }
+    }
     .content {
       .item {
         width: 100%;

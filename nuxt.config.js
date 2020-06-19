@@ -17,6 +17,7 @@ export default {
     ],
     script: [
       { src: '/js/prism.js' },
+      { src: '/js/iconfont.js' }
     ]
   },
   /*
@@ -63,8 +64,8 @@ export default {
       src: "@/assets/js/iconfont.js",
       ssr: false
     },
-    { 
-      src: '~/plugins/message', 
+    {
+      src: '~/plugins/message',
       ssr: false
     },
   ],

@@ -1,0 +1,3 @@
+@blog = http://106.54.232.85
+
+get {{blog}}//wp-json/wp/v2/posts

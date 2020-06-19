@@ -11,6 +11,7 @@
         <p>
           <span class="text m-l-10">分类:</span>
           <span
+            style="margin-right: 5px;"
             class="classify"
             v-for="(item, index) in detail.articleInfor.classify"
             :key="index"
@@ -69,7 +70,7 @@
           "
           target="_blank"
         >
-          <i class="iconfont icon-QQkongjian"></i>
+          <i class="iconfont icon-062qqkongjian"></i>
         </a>
         <a
           class="weibo"
@@ -87,8 +88,8 @@
       <!--分享结束-->
       <!--标签开始-->
       <div class="tag-wrap tc">
-        <i class="iconfont icon-tag"></i>
-        <span v-for="(item, index) in detail.articleInfor.tags" :key="index">{{ item.name }}</span>
+        <i class="iconfont icon-tag" style="position: relative;top:.5px"></i>
+        <span style="margin-right: 5px;" v-for="(item, index) in detail.articleInfor.tags" :key="index">{{ item.name }}</span>
       </div>
       <!--标签结束-->
       <!--上一篇下一篇-->
@@ -148,33 +149,35 @@
         <ul class="author-link">
           <li class="list">
             <nuxt-link :to="{ name: 'index' }">
-              <i class="iconfont icon-shouye"></i>
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-shouye1"></use>
+              </svg>
             </nuxt-link>
           </li>
           <li class="list github" @click="goToGithub">
-            <span >
-              <i class="iconfont icon-github1"></i>
-            </span>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-github1"></use>
+            </svg>
           </li>
           <li class="list" @click="goToqq">
-            <span>
-              <i class="iconfont icon-qq"></i>
-            </span>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-QQ"></use>
+            </svg>
           </li>
           <li class="list" @click="goToWeixin">
-            <span>
-              <i class="iconfont icon-weixin"></i>
-            </span>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-weixin1"></use>
+            </svg>
           </li>
           <li class="list" @click="goToWeibo">
-            <span >
-              <i class="iconfont icon-tubiaozhizuo-"></i>
-            </span>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-weibo"></use>
+            </svg>
           </li>
           <li class="list" @click="goToEmail">
-            <span >
-              <i class="iconfont icon-youxiang"></i>
-            </span>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-youxiang1"></use>
+            </svg>
           </li>
         </ul>
       </div>
@@ -183,7 +186,7 @@
     <!--评论列表-->
     <div class="section comment">
       <h2 class="commeng-title tc">
-        {{`共 ${detail.articleInfor.commentCount} 条评论关于 “${detail.title.rendered}”`}}
+        {{`共 ${detail.articleInfor.commentCount} 条评论关于  ${detail.title.rendered}`}}
       </h2>
       <client-only>
         <comments :status="detail.comment_status"></comments>
@@ -393,7 +396,7 @@ export default {
       color: @color-white;
     }
     &::before {
-      content: "\e7ae";
+      content: "\e604";
       font-family: "iconfont";
       color: @color-white;
     }
