@@ -32,8 +32,8 @@ export default {
      * 配置全局 css
      */
     'element-ui/lib/theme-chalk/index.css',
-    '@assets/styles/global.less',
-    '@assets/styles/iconfont.css'
+    '~assets/styles/global.less',
+    '~assets/styles/iconfont.css'
   ],
   styleResources: {
     less: [
@@ -49,19 +49,19 @@ export default {
       ssr: true
     },
     {
-      src: "@/plugins/element-ui",
+      src: "~/plugins/element-ui",
       ssr: true
     },
     {
-      src: "@/plugins/loading",
+      src: "~/plugins/loading",
       ssr: false
     },
     {
-      src: "@/plugins/libs",
+      src: "~/plugins/libs",
       ssr: true
     },
     {
-      src: "@/assets/js/iconfont.js",
+      src: "~/assets/js/iconfont.js",
       ssr: false
     },
     {
