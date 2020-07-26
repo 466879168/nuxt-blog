@@ -194,13 +194,11 @@ export default {
     this.$store.commit('comment/resetComment')
   },
   mounted() {
-    console.log(this.commentList)
   },
   methods: {
     ...mapActions('comment',['getCommentList', 'updateComment','updateCommentOpinion']),
     //评论列表
     async getList(){
-      console.log(localStorage.getItem('authorInfo'))
       if(localStorage.getItem('authorInfo')){
         const authorInfo=JSON.parse(localStorage.getItem('authorInfo'))
         this.ruleForm.name=authorInfo.author
@@ -248,7 +246,6 @@ export default {
     },
     showChartlet() {},
     getExpression() {
-      console.log(111);
     },
     //验证码
     randomCode(){
@@ -276,7 +273,6 @@ export default {
           this.submitFormFn()
           this.$refs[formName].resetFields();
         } else {
-          console.log('error submit!!');
           return false;
         }
       });

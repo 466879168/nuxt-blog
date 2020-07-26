@@ -7,7 +7,6 @@ export const state=()=>({
 export const mutations={
   setCommentList(state,data){
     state.commentList=[...state.commentList,...data]
-    console.log(state.commentList)
   },
   resetComment(state){
     state.commentList=[]

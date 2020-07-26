@@ -39,7 +39,8 @@
       <!--分页-->
       <div class="footer-content">
         <el-pagination
-        @current-change="changePagination"
+          background
+          @current-change="changePagination"
           layout="prev, pager, next"
           :total="total"
           :current-page="currentPage"
@@ -105,6 +106,9 @@ export default {
         padding-bottom:@container-padding;
         border-bottom: 1px solid @color-main-background;
         font-size: @font-size-large;
+      }
+      .footer-content{
+        margin-top: 10px;
       }
     }
   }

@@ -31,7 +31,7 @@
       </p>
       <p class="m-l-10">
         <strong>本文地址:</strong>
-        <a :href="fullPath">{{ fullPath }}</a>
+        <a :href="fullPath">www.mengyang.info{{ fullPath }}</a>
       </p>
     </div>
     <!--文章内容结束-->
@@ -271,7 +271,6 @@ export default {
     },
     goToGithub(){
       window.open("https://github.com/466879168")
-      // window.location.href="https://github.com/466879168"
     },
     goToWeibo(){
       window.open("https://weibo.com/u/5511878287")
@@ -329,6 +328,11 @@ export default {
     padding-bottom: 5px;
     border-bottom: 1px solid @color-main-background;
     color: @color-sub-text;
+  }
+}
+.copyright{
+  a{
+    color: #1890ff;
   }
 }
 .content-details {
