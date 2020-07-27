@@ -4,10 +4,10 @@
     <default-header></default-header>
     <div :class="['main',menuStatus && 'is-show-menu']">
       <div class="wrap layout">
+        <default-sidebar class="sidebar-wrap"></default-sidebar>
         <div class="content">
           <nuxt />
         </div>
-        <default-sidebar class="sidebar-wrap"></default-sidebar>
       </div>
     </div>
     <default-footer></default-footer>

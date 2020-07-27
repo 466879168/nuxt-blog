@@ -125,7 +125,7 @@
     <div class="section author-introduct">
       <el-image
         style="width: 100px; height: 100px"
-        :src="detail.articleInfor.other.authorPic"
+        :src="defaultAvatar"
         fit="cover"
       ></el-image>
       <div class="right">
@@ -145,7 +145,7 @@
           </div>
           <reward :isShow="isShowReward" :content="rewardContent" @closeReward="closeReward"></reward>
         </div>
-        <p class="author-summary">浮生一世,总有偿还之时。</p>
+        <p class="author-summary">一日行善，福虽未至，祸自远矣。一日行恶，祸虽未至，福自远矣。行善之人，如春园之草，不见其长，日有所增。做恶之人，如磨刀之石，不见其损，日有所亏。福祸无门总在心，人心不善祸相侵。</p>
         <ul class="author-link">
           <li class="list">
             <nuxt-link :to="{ name: 'index' }">
@@ -307,6 +307,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+.container{
+  padding-top: 20px;
+}
 .section {
   margin-top: @container-margin;
   padding: @container-padding;

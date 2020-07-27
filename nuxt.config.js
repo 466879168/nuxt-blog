@@ -17,6 +17,7 @@ export default {
     ],
     script: [
       { src: '/js/prism.js' },
+      {src:'https://hm.baidu.com/hm.js?0be5abcc739c125fd7830abb4a167449'},
       { src: '/js/iconfont.js' }
     ]
   },
@@ -68,6 +69,9 @@ export default {
       src: '~/plugins/message',
       ssr: false
     },
+    {
+      src: '~/plugins/baidu'
+    }
   ],
   buildModules: [
   ],
