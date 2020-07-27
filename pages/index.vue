@@ -19,12 +19,15 @@
           </p>
           <div class="information clearfix">
             <span>
+              <i class="iconfont icon-shijian"></i>
               {{item.date|dateTFormat}}
             </span>
             <span>
+              <i class="iconfont icon-yueduliang"></i>
               {{item.articleInfor.viewCount}}
             </span>
             <span>
+              <i class="iconfont icon-pingjia"></i>
               {{ item.articleInfor.commentCount }}
             </span>
 <!--            <span>-->

@@ -11,7 +11,7 @@
         孟洋的博客小站
       </div>
       <div class="content">
-        记录日常工作遇到的问题和知识。
+        本站采用了nuxt+wordpress Rest Api制作而成，前端采用nuxtjs服务器端渲染，后端接口采用的是WordPress Api,源码存在GitHub上，<a href="https://github.com/466879168/nuxt-blog" target="_blank">点此前往查看</a>
       </div>
     </div>
     <!--公告-->
@@ -238,53 +238,56 @@ export default {
     }
   }
   .notice{
-    .smallicon{
-      display: flex;
-      justify-content: space-between;
-      div{
-        box-sizing: border-box;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        line-height: 40px;
-        border-radius: 50%;
-        margin: 20px 0;
-        cursor: pointer;
-        i{
-          font-size: 20px
-        }
-      }
-      div:nth-child(1){
-        border: 1px solid #949fd8;
-        i{
-          color: #949fd8;
-        }
-      }
-      div:nth-child(2){
-        border: 1px solid #4e91d1;
-        i{
-          color: #4e91d1;
-        }
-      }
-      div:nth-child(3){
-        border: 1px solid #c40000;
-        i{
-          color: #c40000;
-        }
-      }
-      div:nth-child(4){
-        border: 1px solid #248a34;
-        i{
-          color: #248a34;
-        }
-      }
-      div:nth-child(5){
-        border: 1px solid #000;
-        i{
-          color: #000;
-        }
-      }
+    a{
+      color:@color-theme;
     }
+    // .smallicon{
+    //   display: flex;
+    //   justify-content: space-between;
+    //   div{
+    //     box-sizing: border-box;
+    //     width: 40px;
+    //     height: 40px;
+    //     text-align: center;
+    //     line-height: 40px;
+    //     border-radius: 50%;
+    //     margin: 20px 0;
+    //     cursor: pointer;
+    //     i{
+    //       font-size: 20px
+    //     }
+    //   }
+    //   div:nth-child(1){
+    //     border: 1px solid #949fd8;
+    //     i{
+    //       color: #949fd8;
+    //     }
+    //   }
+    //   div:nth-child(2){
+    //     border: 1px solid #4e91d1;
+    //     i{
+    //       color: #4e91d1;
+    //     }
+    //   }
+    //   div:nth-child(3){
+    //     border: 1px solid #c40000;
+    //     i{
+    //       color: #c40000;
+    //     }
+    //   }
+    //   div:nth-child(4){
+    //     border: 1px solid #248a34;
+    //     i{
+    //       color: #248a34;
+    //     }
+    //   }
+    //   div:nth-child(5){
+    //     border: 1px solid #000;
+    //     i{
+    //       color: #000;
+    //     }
+    //   }
+    // }
   }
   .comment {
     .title{

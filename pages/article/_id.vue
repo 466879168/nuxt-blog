@@ -21,9 +21,9 @@
         </p>
         <div class="opeartion">
           <div class="information">
-            <span>{{ item.date|dateTFormat }}</span>
-            <span>{{ item.articleInfor.viewCount }}</span>
-            <span>{{ item.articleInfor.commentCount }}</span>
+            <span><i class="iconfont icon-shijian"></i>{{ item.date|dateTFormat }}</span>
+            <span><i class="iconfont icon-yueduliang"></i>{{ item.articleInfor.viewCount }}</span>
+            <span><i class="iconfont icon-pingjia"></i>{{ item.articleInfor.commentCount }}</span>
             <!-- <span>{{ item.articleInfor.xmLike.very_good }}</span> -->
             <nuxt-link
             class="details-btn"
@@ -37,6 +37,7 @@
     <!-- 分页 -->
     <el-pagination
       :page-size="10"
+      background
       layout="prev, pager, next"
       :current-page="currentPage"
       @current-change="changePagination"
@@ -76,7 +77,7 @@ export default {
 
 <style lang="less" scoped>
 .container {
-  padding: @container-padding;
+  padding: 20px;
   background: @color-white;
   border-radius: @border-radius;
 
@@ -87,6 +88,21 @@ export default {
   }
   .el-pagination{
     text-align: center;
+    margin-top: 20px;
+  }
+  .article-list{
+    .list-content{
+      .opeartion{
+        .information{
+          span{
+            margin-left: 10px;
+            i{
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+    }
   }
 }
 </style>

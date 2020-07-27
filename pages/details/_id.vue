@@ -4,8 +4,12 @@
     <article class="section article">
       <h2 class="title tc">{{ detail.title.rendered }}</h2>
       <div class="other-info tc">
-        <p class>
+        <p>
+          <i class="iconfont icon-wo"></i>
           <span class="author">{{ detail.articleInfor.author }}</span>
+          <span>
+            <i class="iconfont icon-shijian"></i>
+          </span>
           <time>{{ detail.date }}</time>
         </p>
         <p>
@@ -22,7 +26,8 @@
           <span class="m-l-5">{{ detail.articleInfor.commentCount }}</span>
         </p>
       </div>
-      <div class="content-details" ref="articleContent" v-html="detail.content.rendered"></div>
+      <div class="content-details" ref="articleContent" v-html="detail.content.rendered">
+      </div>
     </article>
     <div class="section copyright">
       <p class="m-l-10" style="margin-bottom: 10px;">
@@ -238,6 +243,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.detail);
     //下面这行代码解决prismjs不能异步加载必须刷新一下才显示的问题
     process.browser &&
       document
@@ -344,19 +350,70 @@ export default {
   /deep/ a {
     color: @color-theme;
   }
-  /deep/ h2 {
-    margin-top: 10px;
+  /deep/ h1{
+    font-size: 28px;
+    line-height: 36px;
+    background: #f0f2f7;
+    padding-left: 10px;
+    border-left: 5px solid #1890ff;
+    font-weight: 500;
   }
-  /deep/ h1,
   /deep/ h2 {
-    font-size: @font-size-large;
+    font-size: 24px;
+    line-height: 32px;
+    background: #f0f2f7;
+    border-left: 5px solid #1890ff;
+    font-weight: 500;
+    padding: 10px 0 10px 10px;
+    margin: 10px 0;
   }
-  /deep/ h4,
-  /deep/ h5,
-  /deep/ h6 {
-    font-size: @font-size-small;
+  /deep/ h3 {
+    font-size: 22px;
+    line-height: 30px;
+    background: #f0f2f7;
+    padding-left: 10px;
+    border-left: 5px solid #1890ff;
+    font-weight: 500;
+    margin: 10px 0;
+  }
+  /deep/ h4 {
+    font-size: 18px;
+    line-height: 28px;
+    background: #f0f2f7;
+    padding-left: 10px;
+    border-left: 5px solid #1890ff;
+    font-weight: 500;
+    margin: 10px 0;
+  }
+  /deep/ ul,ol{
+    margin: 0 0 24px;
+  }
+  /deep/ ol li{
+    list-style-type: decimal;
+    margin-left: 40px;
+    margin-top: 8px;
+  }
+  /deep/ p{
+    color:#4d4d4d;
+    font-weight: 400;
+    margin: 0 0 16px;
+  }
+  /deep/ table{
+    text-align: center;
+    width: 100%;
+  }
+  /deep/ th{
+    border:1px solid #ddd;
+    font-weight: 700;
+    background-color: #eff3f5;
+    padding: 8px;
+  }
+  /deep/ td{
+    border:1px solid #ddd;
+    padding: 8px;
   }
   /deep/ img {
+    max-width: 100%;
     height: auto !important;
     box-shadow: 0 0 10px #d2d2d2;
   }
