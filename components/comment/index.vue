@@ -7,10 +7,10 @@
         电子邮件地址不会被公开。
       </p>
       <div class="comment-other">
-        <ul class="list-wrap">
+        <!-- <ul class="list-wrap">
           <li class="list" @click="showChartlet">上传图片</li>
           <li class="list" @click.stop="getExpression">表情</li>
-        </ul>
+        </ul> -->
       </div>
       <div class="comment-form-content">
         <el-form
@@ -44,7 +44,7 @@
     </div>
     <!--评论列表-->
     <ul class="comment-list-wrap">
-      <li class="comment-list" v-for="(item,index) in commentList" :key="item.key">
+      <li class="comment-list" v-for="(item,index) in commentList" :key="index">
         <template>
           <p
             v-if="info.isOpenTextThumbnail"
@@ -54,7 +54,7 @@
           </p>
           <img
             v-else
-            :src="item.userAgentInfo.author_avatar_urls"
+            :src="item.userAgentInfo.vipStyle.title === '博主'?defaultAvatar:item.userAgentInfo.author_avatar_urls"
             class="list-gravatar"
             width="60"
             height="60"
@@ -221,6 +221,7 @@ export default {
         this.bClick=false
       }
       this.status === 'open' && this.$nextTick(()=>this.randomCode())
+      console.log(this.commentList);
     },
     //下一页
     async getMoreList(){

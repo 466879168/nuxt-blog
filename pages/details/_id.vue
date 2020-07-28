@@ -243,7 +243,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.detail);
     //下面这行代码解决prismjs不能异步加载必须刷新一下才显示的问题
     process.browser &&
       document
@@ -292,7 +291,7 @@ export default {
         center: true,
         wrapCenter: true,
         width: 300,
-        imgUrl: "http://image-static.codingdylan.com/img/20200531124303.png",
+        imgUrl: "https://gitee.com/my466879168/picBed/raw/master/image/20200725021330.png",
         duration: 0
       })
     },
@@ -304,7 +303,7 @@ export default {
         center: true,
         wrapCenter: true,
         width: 300,
-        imgUrl: "http://image-static.codingdylan.com/img/20200531124259.png",
+        imgUrl: "https://gitee.com/my466879168/picBed/raw/master/image/20200725021322.png",
         duration: 0
       })
     }
@@ -394,7 +393,7 @@ export default {
     margin-top: 8px;
   }
   /deep/ p{
-    color:#4d4d4d;
+    color:#000;
     font-weight: 400;
     margin: 0 0 16px;
   }

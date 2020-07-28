@@ -4,17 +4,17 @@
     <div class="reward-toast-inner tc">
       <i class="el-icon-close" @click="$emit('closeReward',false)"></i>
       <div class="thumbnail">
-        <el-image style="width: 80px; height: 80px" :src="content.thumbnail" fit="cover"></el-image>
+        <el-image style="width: 80px; height: 80px" :src="defaultAvatar" fit="cover"></el-image>
       </div>
-      <p class="summary">{{ content.text }}</p>
+      <p class="summary">谢谢大家!</p>
       <div class="reward-qrcode-wrap">
         <div class="left">
-          <img  :src="content.wechatpay" class="reward-qrcode" width="150" height="150" alt="">
+          <img  src="https://gitee.com/my466879168/picBed/raw/master/image/20200725021307.png" class="reward-qrcode" width="150" height="150" alt="">
           <img src="../../assets/images/wechatpay.svg" width="80" alt="">
           
         </div>
         <div class="right">
-          <img  :src="content.alipay" class="reward-qrcode" width="150" height="150" alt="">
+          <img  src="https://gitee.com/my466879168/picBed/raw/master/image/20200725021307.png" class="reward-qrcode" width="150" height="150" alt="">
           <img src="../../assets/images/alipay.svg" width="80" alt="">
         </div>
       </div>

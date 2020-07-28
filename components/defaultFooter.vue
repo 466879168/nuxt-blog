@@ -20,7 +20,7 @@
             </li>
           </ul>
           <div class="record">
-            <a href="http://www.beian.miit.gov.cn/" target="_blank">豫ICP备20002538号</a>
+            <a href="http://www.beian.miit.gov.cn/" target="_blank">豫ICP备20022400号</a>
           </div>
           <div class="theme">
              <a href="https://www.xuanmo.xin" target="_blank">Theme by Xuanmo</a>
