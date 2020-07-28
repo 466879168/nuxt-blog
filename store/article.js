@@ -111,7 +111,7 @@ export const actions = {
   //更新阅读量
   async updateArticleViewCount({commit},requestData){
     try {
-      let { data } = await this.$axios.$post(`${process.env.baseUrl}/wp-json/xm-blog/v1/view-count`, requestData, {
+      let { data } = await this.$axios.$post(`${process.env.baseUrl}/wp-json/dylan-blog/v1/view-count`, requestData, {
         headers: {
           progress: false
         }
