@@ -221,7 +221,6 @@ export default {
         this.bClick=false
       }
       this.status === 'open' && this.$nextTick(()=>this.randomCode())
-      console.log(this.commentList);
     },
     //下一页
     async getMoreList(){

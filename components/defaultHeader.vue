@@ -122,8 +122,11 @@
                 placeholder="请输入内容"
                 v-model="input"
                 class="input-with-select"
+                @keyup.enter.native="search"
               >
                 <el-button
+                  :class="{'focus':showred}"
+                  class="searchbtn"
                   size="small"
                   slot="append"
                   icon="el-icon-search"
@@ -132,7 +135,7 @@
               </el-input>
             </div>
           </div>
-          <el-button
+          <!-- <el-button
             class="search-btn"
             size="small"
             type="primary"
@@ -143,7 +146,7 @@
             size="small"
             type="primary"
             icon="el-icon-s-fold"
-          ></el-button>
+          ></el-button> -->
         </div>
         <!--搜索栏-->
       </div>
@@ -157,7 +160,8 @@ export default {
   name: "defaultHeader",
   data() {
     return {
-      input: ""
+      input: "",
+      showred:false
     };
   },
   computed: {
@@ -165,6 +169,9 @@ export default {
   },
   methods: {
     search() {
+      if (!this.input.trim()) {
+        return false
+      }
       this.$router.push({
         name: "search",
         query: {
@@ -269,15 +276,18 @@ export default {
   //搜索栏
   .search {
     .search-wrapper {
-      width: 230px;
+      width: 250px;
       .search-content {
         border-radius: 1px solid @color-main-background;
         border-radius: @border-radius;
         button {
-          width: 20px;
+          width: 100%;
         }
         /deep/ .el-input-group__append {
-          width: 20px;
+          padding: 0 15px;
+        }
+        /deep/ .el-input__inner:focus{
+          border: 1px solid #DCDFE6;
         }
       }
     }

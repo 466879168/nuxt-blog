@@ -77,7 +77,8 @@ export default {
 
 <style lang="less" scoped>
 .container {
-  padding: 20px;
+  margin-top: 20px;
+  padding: 10px;
   background: @color-white;
   border-radius: @border-radius;
 

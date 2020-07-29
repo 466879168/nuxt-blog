@@ -98,7 +98,7 @@
           <i class="iconfont icon-tag"></i>
           标签云
         </p>
-        <router-link :to="{name:'tags'}">更多</router-link>
+        <nuxt-link :to="{name:'tags'}">更多</nuxt-link>
       </div>
       <div class="content">
         <div v-for="(item, index) in sidebar.tagCloud" :key="index">
@@ -140,7 +140,6 @@ export default {
     })
   },
   mounted(){
-    console.log(this.sidebar.newComment);
   },
   methods:{
     goToHome(){
