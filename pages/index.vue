@@ -79,6 +79,7 @@ export default {
   watch:{
   },
   mounted() {
+    console.log(this.info)
   },
   computed:{
     ...mapState(['info']),
